@@ -1,0 +1,25 @@
+{% load static %}
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="{% static 'js/cadastro/materialize.js' %}"></script>
+<script src="{% static 'js/cadastro/init.js' %}"></script>
+<script src="{% static 'js/cadastro/option.js' %}"></script>
+<script src="{% static 'js/cadastro/dropdown.js' %}"></script>
+<script src="{% static 'js/cadastro/textrede.js' %}"></script>
+<script src="{% static 'js/cadastro/calendare.js' %}"></script>
+<script src="{% static 'js/cadastro/jquery-3.5.1min.js' %}"></script>
+<script src="{% static 'js/cadastro/jquery.mask.js' %}"></script>
+<script>
+    $(document).ready(function(){
+        $('#data').mask('00/00/0000');
+        $('.time').mask('00:00:00');
+        $('.date_time').mask('00/00/0000 00:00:00');
+        $('.cep').mask('00000-000');
+        $('.phone').mask('0000-0000');
+        $('.phone_with_ddd').mask('(00) 0000-0000');
+        $('.phone_us').mask('(00) 00000-0000');
+        $('.mixed').mask('AAA 000-S0S');
+        $('.cpf').mask('000.000.000-00', {reverse: true});
+        
+        })
+</script>
+

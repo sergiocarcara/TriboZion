@@ -1,0 +1,55 @@
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}:...Projeto-Tribo Zion...:{% endblock %}
+
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'include/nave_quemsomos.html' %}
+
+{% endblock %}
+
+
+<!-- Titulo do conteudo-->
+
+{% block titulo_page %}
+
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">    
+    
+    <h3 class="header orange-text">Quem Somos</h3>
+    
+    <hr style="border-color:hotpink ; border-width: 1,5px; ">    
+    
+  </div>
+</div>
+
+{% endblock %}
+
+<!-- Fim Titulo page-->
+
+
+<!--Conteudo da Pagina-->
+
+{% block conteudo %}
+
+<div class="section no-pad-bot" id="index-banner">
+   
+
+    <div class="row">
+      <h5 class="header col s12 light">
+        {{ quem_somos_page.texto | safe }}
+      </h5>
+    </div>    
+   
+    <br><br>
+
+</div>
+
+{% endblock %}

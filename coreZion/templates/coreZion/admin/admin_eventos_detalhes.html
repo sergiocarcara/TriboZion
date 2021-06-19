@@ -1,0 +1,139 @@
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base_admin.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}Detalhes Eventos{% endblock %}
+{% block head %}{% include 'base/head_admin.html' %}{% endblock %}
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'include/nave_admin.html' %}
+
+{% endblock %}
+
+
+<!-- Titulo do conteudo-->
+
+{% block titulo_page %}
+
+<br><br>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">  
+
+      <a href="/logout/" class="waves-effect red waves-light btn-large">
+        <i class="material-icons left">highlight_off</i> Sair
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left">account_circle
+        </i> {{ user }}
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left"> person_outline
+        </i>
+       {{ user.first_name }}
+      </a>    
+      <h5 class="right-align blue-text">
+        <b>{% include 'include/data_hora.html' %}</b>
+      </h5>   
+      <div class="divider"></div>
+  </div>    
+</div>
+
+{% endblock %}
+
+<!-- Fim Titulo page-->
+
+<!--Titulo do contene-->
+
+{% block title_contine %}
+<a class="btn-large disabled">
+  <i class="material-icons left">format_list_bulleted</i>DTALHES - EVENTOS
+</a>
+<a class="indigo dark-2 waves-effect waves-light btn-large" href="/administrativo/" title="Painel Administrativo">
+  <i class="material-icons left">apps</i>PAINEL ADMINISTRATIVO
+</a>
+<a class="green waves-effect waves-teal btn-large" href="/eventos/lista/" title="Voltar a lista de Eventos">
+  <i class="material-icons left">format_list_bulleted</i>LISTA DE EVENTOS
+</a>     
+
+{% endblock %}
+
+<!--fim-->
+
+<!--Conteudo da Pagina-->
+
+{% block conteudo %} 
+    <br>
+    <a href="/eventos/cadastro/" data-target="modal1" class="btnedit modal-trigger btn-small blue darken-1 " title="NOVO EVENTO">
+      Novo Evento<i class="material-icons right">library_add</i>
+    </a>
+
+    <a href="#" data-target="modal1" class="btnedit modal-trigger btn-small deep-purple darken-1 " title="Atualizando Evento">
+      Editar<i class="material-icons right">edit</i>
+    </a>
+
+    <a class="btnDelet red darken-1 btn-small  modal-trigger" title="Apagar Evento" href="#modal_confirma">
+      Apagar<i class="material-icons right">delete_forever</i>
+    </a>
+    
+    <button class="btnDelet green darken-1 btn-small" onclick="printPage('print');" title="Imprimir ou salva (PFD)">
+      Imprimir<i class="material-icons right">print</i><i class="material-icons right">picture_as_pdf</i> - PDF
+    </button>  
+    
+    <br><br>
+    <div class="divider"></div>
+    <br>
+    <div class="row col s12">
+        <a class="btn disabled" >
+            <h7 style="color:black;"><b>Titulo :</b> </h7><h7 style="color:crimson;">{{eventosDetalhes.titulo}}</</h7>
+          </a>    
+        <a class="btn disabled" >
+          <h7 style="color:black;"><b>Criado em :</b> </h7><h7 style="color:crimson;">{{eventosDetalhes.data_criacao}}</</h7>
+        </a>      
+
+        <div class="row">
+          <div class="col s12 m12">
+            <div class="card-panel " id="print">
+              <span class="black-text">
+                <p><h4>{{eventosDetalhes.titulo}}</h4></p>
+                {{eventosDetalhes.texto | safe }}
+              </span>
+              <a href="{{eventosDetalhes.link}}" class="btn-small blue darken-1" target="-blanck">
+                <h7 style="color:black;"><b>ESCREVA-SE AQUI:</b> </h7><h7 style="color:cornsilk;">{{eventosDetalhes.link}}</</h7>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div><br>        
+        <a href="#topo" class="btnedit btn-small deep-purple darken-1 " title="Voltar ao início da página">
+          Topo<i class="material-icons right">arrow_upward</i>
+        </a>     
+    
+    </div>
+    
+<!-- Modal Structure -->
+<div id="modal_confirma" class="modal">
+  <div class="modal-content">
+    <b><h4 style="color: crimson;">Deseja realmente excluir!</h4></b>
+    <p>Esse registro será excluido e não poderar se recuperado...</p>
+  </div>
+  <div class="modal-footer">
+    <a href="/eventos/delete/{{eventosDetalhes.id}}/">
+      <button class="btnDelet red darken-1 btn-small " title="DELATAR" type="button">
+        Deletar<i class="material-icons right">delete_forever</i>
+      </button>
+    </a>    
+    <a href="/eventos/detalhes/{{eventosDetalhes.id}}" class="modal-close green darken-1  btn">Cancelar<i class="material-icons right">close</i></a>
+  </div>
+</div>
+
+
+        
+
+
+{% endblock %}
+{% block java %}{% include 'base/javaScripts.html' %}{% endblock %}

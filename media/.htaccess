@@ -1,0 +1,4 @@
+##### LOCAWEB - NAO REMOVER #####
+AddHandler php73-script .php
+suPHP_ConfigPath /home/tribozion1/index.wsgi/$1 [QSA,PT,L]
+##### LOCAWEB - NAO REMOVER #####

@@ -1,0 +1,65 @@
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}:...Projeto-Tribo Zion...:{% endblock %}
+
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'include/nave_atletas.html' %}
+
+{% endblock %}
+
+
+<!-- Titulo do conteudo-->
+
+{% block titulo_page %}
+
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">      
+    <h1 class="header orange-text">Atletas</h1>    
+    <hr style="border-color:hotpink ; border-width: 1,5px; ">   
+    
+  </div>
+</div>
+
+{% endblock %}
+
+<!-- Fim Titulo page-->
+
+
+<!--Conteudo da Pagina-->
+
+{% block conteudo %}
+
+    <!--   Icon Section   -->
+  <div class="row">
+    {% for foto in alunos %}
+    <div class="col s6 m2">
+
+      <div class="card">
+        <div class="card-image waves-effect waves-block waves-light">        
+          <img class="activator" src="{{ foto.imagem.url}}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">{{ foto.nome }}<i title="Detalhes" class="material-icons right">add_to_photos</i></span>
+          <p><a href="#">Tribo de Zion</a></p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">{{ foto.faixa }}</span><hr>
+          <p>{{ foto.texto }}</p><br>
+          <hr>
+          <span class="card-title grey-text text-darken-4" title="Fechar"><i class="material-icons right">cancelar</i></span>
+        </div>
+      </div>
+
+    </div>
+    {% endfor %}
+  </div>      
+ 
+{% endblock %}

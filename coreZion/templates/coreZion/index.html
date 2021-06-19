@@ -1,0 +1,103 @@
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base.html' %}
+{% load static %}
+
+<!-- Titulo da Pagina-->
+{% block title %}:...Projeto-Tribo Zion...:{% endblock %}
+
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'base/nave.html' %}
+
+{% endblock %}
+
+<!-- Titulo do conteudo-->
+
+<!--Conteudo da Pagina-->
+
+{% block conteudo %}
+<!-- slider-->
+<br><br>
+<div class="slider">
+  <ul class="slides">
+    <li>       
+      
+      <img src="{% static 'img/banner-m1.png' %}" width="580" height="250"> <!-- random image -->
+      <div class="caption center-align">
+        
+      </div>
+    </li>
+    <li>
+      <img src="{% static 'img/fotos/p1.jpg' %}"> <!-- random image -->
+      <div class="caption left-align">
+        <h3>Treino das 07:00 as 21:00hs</h3>
+        <hr style="border-color:hotpink ; border-width: 1,5px; ">
+        <h5 class="light grey-text text-lighten-3">Treino dos adultos 100% de aproveitamento</h5>
+      </div>
+    </li>
+    <li>
+      <img src="{% static 'img/fotos/p2.jpg' %}"> <!-- random image -->
+      <div class="caption right-align">
+        <h3>Treino das 07:00 as 21:00hs</h3>
+        <hr style="border-color:hotpink ; border-width: 1,5px; ">
+        <h5 class="light grey-text text-lighten-3">Treino dos adultos 100% de aproveitamento</h5>
+      </div>
+    </li>
+    <li>
+      <img src="https://lorempixel.com/580/250/nature/4"> <!-- random image -->
+      <div class="caption center-align">
+        <h3>This is our big Tagline!</h3>
+        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+      </div>
+    </li>
+  </ul>
+</div><br>
+<!--fin slide-->
+
+<!--bloco de menssagem-->
+<blockquote>
+  <h6>A Pesquisa e o melhor conteudo para desenvolver um bom projeto.</h6><br>
+</blockquote>
+<!--fim-->
+
+<!--painel de carde-->
+<div class="row">
+  <h3 class="header">Titulo</h3><hr style="border-bottom:2px solid blue">
+   <div class="col s4 m4">
+     <a class="waves-effect waves-light  modal-trigger" href="#modal1-1">
+         <div class="card-panel teal">
+           <span class="white-text">I am a very simple card. I am good at containing small bits of information.
+           I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+           </span>
+         </div>
+     </a>
+   </div>
+
+  <div class="col s4 m4">
+      <a class="waves-effect waves-light  modal-trigger" href="#modal1-2">
+         <div class="card-panel teal">
+           <span class="white-text">I am a very simple card. I am good at containing small bits of information.
+           I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+           </span>
+         </div>
+      </a>
+  </div>
+
+  <div class="col s4 m4">
+    <a class="waves-effect waves-light  modal-trigger" href="#modal1-3">
+         <div class="card-panel teal">
+           <span class="white-text">I am a very simple card. I am good at containing small bits of information.
+           I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+           </span>
+         </div>
+    </a>
+  </div>
+
+</div>
+<!--fim-->
+{% include 'include/modal.html' %}
+   
+  
+{% endblock %}
+<!-- fim--> 

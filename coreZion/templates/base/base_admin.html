@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<!--head-->
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  
+ {% block head %}{% endblock %}
+ 
+ {% block css_boots %}{% endblock %}
+</head>
+<!--fim head-->
+
+<body>
+
+  <!--Nave bar menu -->
+  {% block navebar %}
+  
+  {% endblock %}
+  <!--Fim navebar-->
+
+  <!--Titulo da pagina-->
+  {% block titulo_page %}
+  
+  {% endblock %}
+  <!--fim titulo-->
+
+  <!--Conteudo da Pagina-->
+  <div class="container">
+    <div class="section"> 
+
+      <h4 class="header">{% block title_contine %}{% endblock %}</h4>
+      <div class="divider"></div>
+      
+        {% block conteudo %}
+
+        {% endblock %}
+        
+        
+      <br><br> 
+      <blockquote>
+        <h6>Versão do Sistema 1.0.0 </h6>
+        <h6>Carcara Desenvolvimento</h6>
+      </blockquote>     
+    </div>
+  </div>
+ 
+
+  <!--Fim do Conteudo-->
+
+
+  <!--footer--> 
+  
+
+  <!--fim footer-->
+  
+  <!--  Scripts-->
+  {% block java %}{% endblock %} 
+
+  <!--Fim Scripts-->
+
+  </body>
+</html>

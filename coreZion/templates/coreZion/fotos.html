@@ -1,0 +1,88 @@
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}:...Galeria de Fotos...:{% endblock %}
+
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'include/nave_galeria_fotos.html' %}
+
+{% endblock %}
+
+
+<!-- Titulo do conteudo-->
+
+{% block titulo_page %}
+
+<div class="section no-pad-bot" id="index-banner">  
+  <div class="container center">
+    
+    <h3 class="header blue-text"><i class="large material-icons" title="GALERIA DE FOTOS">camera_alt</i></h3>   
+    <hr style="border-color:hotpink ; border-width: 1,5px; ">   
+  </div>
+</div>
+
+{% endblock %}
+
+<!-- Fim Titulo page-->
+
+
+<!--Conteudo da Pagina-->
+
+{% block conteudo %}
+
+<script>
+  $(document).ready(function(){
+    $('.materialbox').materialbox();
+    
+  });
+   </script>
+    <!--   Icon Section   -->
+    {% for galerias in galeria %}
+
+    <div class="section no-pad-bot" id="index-banner">
+         
+        <h4 class="header orange-text center">{{ galerias.titulo}}</h4>
+        <a href="/fotos/detalhes/{{galerias.id}}/" class="waves-effect waves-light btn blue"><i class="material-icons left">add_a_photo</i>Fotos</a>
+        <hr style="border-color:hotpink ; border-width: 1,5px; ">
+        <br><br>    
+    </div>  
+
+    <div class="row card">  
+      
+      <div class="col s12 m4 14">
+        <img src="{{ galerias.imagen1.url }}" class="materialbox responsive-img card">
+      </div>
+      <div class="col s12 m4 14">
+        <img src="{{  galerias.imagen2.url }}" class="materialbox responsive-img card">
+      </div>
+      <div class="col s12 m4 14">
+        <img src="{{  galerias.imagen3.url }}" class="materialbox responsive-img card">
+      </div>      
+     
+    </div>   
+    {% endfor %}
+    <style>
+      body{
+        background: #dddd;
+      }
+      .materialbox{
+        cursor: pointer;
+        transition: .5s;
+        background:  #eee;
+      }
+      .materialbox:hover{
+        transform: scale(1.03);
+        background: #fff;       
+      }
+      
+    </style>
+  
+
+{% endblock %}

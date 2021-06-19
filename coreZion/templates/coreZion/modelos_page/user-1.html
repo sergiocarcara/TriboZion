@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Form Using Materialize Css</title>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+<style type="text/css">
+	body{
+		padding: 0;
+		margin: 0;
+		background: rgb(8, 208, 223);
+	}
+	.btn{
+		margin-top: 10px;
+
+	}
+	.container{
+		margin:100px auto;
+		width: 35%;
+
+	}
+	@media(max-width: 952px){
+		.container{
+			width: 60%;
+		}
+	}
+		@media(max-width: 475px){
+		.container{
+			width: 80%;
+		}
+	}
+		
+</style>
+</head>
+<body>
+
+	<div class="container">
+		<center><a href="/">
+      	<img src="{% static 'img/logo1.png' %}" width="300" height="300">    	
+        </a>
+        </center>
+	<div class="row card hoverable">
+		<div class="card-content ">
+		<h4 class="center blue-text"><a href="/">Tribo Zion </a></h4>
+		<form class="row s12"  action="submit" method="POST">{% csrf_token %}
+            <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">account_circle</i>
+                  <input type="text" name="username" placeholder="Usuário*">
+                  
+                </div>
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">phone</i>
+                  <input type="password" name="password" placeholder="Senha*">
+                  
+                </div>
+              </div>
+		<div class="col s12 center">
+            <button class="btn btn-large waves-effect waves-light blue" type="submit" name="action">Entrar
+                <i class="material-icons right">send</i>
+            </button>
+            <button class="btn btn-large waves-effect waves-light red" type="reset" name="action">Limpar
+                <i class="material-icons right">send</i>
+            </button>
+            
+		</div>
+	</form>
+	</div>
+</div>
+</div>
+</body>
+</html>

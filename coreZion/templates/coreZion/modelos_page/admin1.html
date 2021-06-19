@@ -1,0 +1,221 @@
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base_admin.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}PAINEL ADMINISTRATIVO{% endblock %}
+
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'include/nave_admin.html' %}
+
+{% endblock %}
+
+
+<!-- Titulo do conteudo-->
+
+{% block titulo_page %}
+
+<br><br>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">  
+
+      <a href="/logout/" class="waves-effect red waves-light btn-large">
+        <i class="material-icons left">highlight_off</i> Sair
+      </a>
+      <a href="#" class="waves-effect blue waves-light btn-large">
+        <i class="material-icons left">account_circle
+        </i> {{ user }}
+      </a>
+      <a href="#" class="waves-effect orange waves-light btn-large">
+        <i class="material-icons left"> person_outline
+        </i>
+       {{ user.first_name }}
+      </a>    
+      <h5 class="right-align blue-text">
+        <b>{% include 'include/data_hora.html' %}</b>
+      </h5>   
+      <div class="divider"></div>
+  </div>    
+</div>
+
+
+
+
+{% endblock %}
+
+<!-- Fim Titulo page-->
+
+
+<!--Conteudo da Pagina-->
+
+{% block conteudo %}
+
+<h4 class="header">Painel Administrativo</h4>
+ <div class="divider"></div>
+
+<!--PRIMARY BLOCK-->
+<div class="col s12 m8 ">
+  <div class="section" id="faq">
+    <div class="faq row">
+
+    <!--PRIMARY BLOCK-->
+        <div class="col s12 m6 l3">
+          <a class="black-text" href="page-faq-detail.html">
+            <div class="card z-depth-0 grey lighten-3 faq-card">
+              <div class="card-content center-align">
+                <i class="material-icons dp48 blue-text">content_copy</i>
+                <h6><b>ATA DE REUNIÃO</b></h6>
+                <p >LISTA E DETALHES</p>
+               </div>
+             </div>
+          </a>
+        </div>
+
+        <div class="col s12 m6 l3">
+          <a class="black-text" href="page-faq-detail.html">
+            <div class="card z-depth-0 grey lighten-3 faq-card">
+              <div class="card-content center-align">
+                <i class="material-icons dp48 red-text ">photo_camera</i>
+                <h6><b>GALERIA DE FOTOS</b></h6>
+                <p>LISTA E DETALHES</p>
+              </div>
+             </div>
+          </a>
+        </div>
+
+        <div class="col s12 m6 l3">
+          <a class="black-text" href="page-faq-detail.html">
+            <div class="card z-depth-0 grey lighten-3 faq-card">
+              <div class="card-content center-align">
+                <i class="material-icons dp48 green-text">local_bar</i>
+                <h6><b>EVENTOS</b></h6>
+                <p>LISTA E DETALHES</p>
+               </div>
+            </div>
+           </a>
+        </div>
+
+        <div class="col s12 m6 l3">
+          <a class="black-text" href="page-faq-detail.html">
+            <div class="card z-depth-0 grey lighten-3 faq-card">
+              <div class="card-content center-align">
+                <i class="material-icons dp48 blue-text">person_pin</i>
+                <h6><b>PARCEIROS</b></h6>
+                <p>LISTA E DETALHES</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+   <!--SEGUNDO BLOCK-->
+
+        <div class="col s12 m6 l3">
+          <a class="black-text" href="page-faq-detail.html">
+            <div class="card z-depth-0 grey lighten-3 faq-card">
+              <div class="card-content center-align">
+                <i class="material-icons dp48 blue-text">transfer_within_a_station</i>
+                <h6><b>ATLETAS</b></h6>
+                <p >LISTA E DETALHES</p>
+               </div>
+             </div>
+          </a>
+        </div>
+
+        <div class="col s12 m6 l3">
+          <a class="black-text" href="page-faq-detail.html">
+            <div class="card z-depth-0 grey lighten-3 faq-card">
+              <div class="card-content center-align">
+                <i class="material-icons dp48 red-text ">people_outline</i>
+                <h6><b>USUÁRIO</b></h6>
+                <p>LISTA E DETALHES</p>
+              </div>
+             </div>
+          </a>
+        </div>
+
+        <div class="col s12 m6 l3">
+          <a class="black-text" href="page-faq-detail.html">
+            <div class="card z-depth-0 grey lighten-3 faq-card">
+              <div class="card-content center-align">
+                <i class="material-icons dp48 green-text">settings_applications</i>
+                <h6><b>ADMIN</b></h6>
+                <p>LISTA E DETALHES</p>
+               </div>
+            </div>
+           </a>
+        </div>
+
+        <div class="col s12 m6 l3">
+          <a class="black-text" href="page-faq-detail.html">
+            <div class="card z-depth-0 grey lighten-3 faq-card">
+              <div class="card-content center-align">
+                <i class="material-icons dp48 blue-text">monetization_on</i>
+                <h6><b>PATROCINADORES</b></h6>
+                <p>LISTA E DETALHES</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!--TERCEIRO BLOCK-->
+
+        <div class="col s12 m6 l3">
+          <a class="black-text" href="page-faq-detail.html">
+            <div class="card z-depth-0 grey lighten-3 faq-card">
+              <div class="card-content center-align">
+                <i class="material-icons dp48 blue-text">contact_mail</i>
+                <h6><b>CONTATOS</b></h6>
+                <p >LISTA E DETALHES</p>
+               </div>
+             </div>
+          </a>
+        </div>
+
+
+
+        <div class="col s12 m6 l3">
+          <a class="black-text" href="page-faq-detail.html">
+            <div class="card z-depth-0 grey lighten-3 faq-card">
+              <div class="card-content center-align">
+                <i class="material-icons dp48 red-text ">photo_camera</i>
+                <h6><b>GALERIA DE FOTOS</b></h6>
+                <p>LISTA E DETALHES</p>
+              </div>
+             </div>
+          </a>
+        </div>
+
+        <div class="col s12 m6 l3">
+          <a class="black-text" href="page-faq-detail.html">
+            <div class="card z-depth-0 grey lighten-3 faq-card">
+              <div class="card-content center-align">
+                <i class="material-icons dp48 green-text">cake</i>
+                <h6><b>EVENTOS</b></h6>
+                <p>LISTA E DETALHES</p>
+               </div>
+            </div>
+           </a>
+        </div>
+
+        <div class="col s12 m6 l3">
+          <a class="black-text" href="page-faq-detail.html">
+            <div class="card z-depth-0 grey lighten-3 faq-card">
+              <div class="card-content center-align">
+                <i class="material-icons dp48 blue-text">child_care</i>
+                <h6><b>PARCEIROS</b></h6>
+                <p>LISTA E DETALHES</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+
+  </div>
+</div>
+
+{% endblock %}

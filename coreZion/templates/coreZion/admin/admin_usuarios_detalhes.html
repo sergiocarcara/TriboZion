@@ -1,0 +1,193 @@
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base_admin.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}lista de atas{% endblock %}
+{% block head %}{% include 'base/head_admin.html' %}{% endblock %}
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'include/nave_admin.html' %}
+
+{% endblock %}
+
+
+<!-- Titulo do conteudo-->
+
+{% block titulo_page %}
+
+<br><br>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">  
+
+      <a href="/logout/" class="waves-effect red waves-light btn-large">
+        <i class="material-icons left">highlight_off</i> Sair
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left">account_circle
+        </i> {{ user }}
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left"> person_outline
+        </i>
+       {{ user.first_name }}
+      </a>    
+      <h5 class="right-align blue-text">
+        <b>{% include 'include/data_hora.html' %}</b>
+      </h5>   
+      <div class="divider"></div>
+  </div>    
+</div>
+
+{% endblock %}
+
+<!-- Fim Titulo page-->
+
+<!--Titulo do contene-->
+
+{% block title_contine %}
+<a class="btn-large disabled">
+  <i class="material-icons left">format_list_bulleted</i>DETALHES - USUÁRIO
+</a>
+<a class="indigo dark-2 waves-effect waves-light btn-large" href="/administrativo/" title="Painel Administrativo">
+  <i class="material-icons left">apps</i>PAINEL ADMINISTRATIVO
+</a>
+<a class="green waves-effect waves-teal btn-large" href="/admin/usuarios/" title="Voltar a lista de Usuários">
+  <i class="material-icons left">format_list_bulleted</i>LISTA DE USUÁRIOS
+</a>     
+
+{% endblock %}
+
+<!--fim-->
+
+<!--Conteudo da Pagina-->
+
+{% block conteudo %} 
+    <br>
+    <a href="#" data-target="modal1" class="btnedit modal-trigger btn-small blue darken-1 " title="Novo Usuário">
+      Novo<i class="material-icons right">library_add</i>
+    </a>
+
+    <a href="#modal_editar" data-target="modal1" class="btnedit modal-trigger btn-small deep-purple darken-1 " title="Atualizando registro">
+      Editar<i class="material-icons right">edit</i>
+    </a>
+    {% if user_detalhes.is_staff == True %}
+      <a class="btn-small disabled" title="Apagar registro" href="#modal_confirma">
+        Apagar<i class="material-icons right">delete_forever</i>
+      </a>          
+    {% else %}
+      <a class="btnDelet red darken-1 btn-small  modal-trigger" title="Apagar registro" href="#modal_confirma">
+      Apagar<i class="material-icons right">delete_forever</i>
+    </a>
+    {% endif %}
+        
+    
+    <br><br>
+    <div class="divider"></div>
+    <br>
+    <div class="row col s12">       
+        <div class="row">
+          <div class="col s12 m12">
+                                      
+                  <table class="responsive-table bordered left striped">
+                      <tr>
+                          <th>LOGIN</th>
+                          <td>{{ user_detalhes.username }}</td>
+                      </tr>
+                      <tr>
+                        <th>PRIMEIRO NOME</th>
+                        <td>{{ user_detalhes.first_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>ULTIMO NOME</th>
+                        <td>{{ user_detalhes.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>E-MAIL</th>
+                        <td>{{ user_detalhes.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>TIPO DE CONTA</th>
+                        <td>
+                            {% if user_detalhes.is_staff == True %}
+                            Administrador
+                            {% else %}
+                            Usuário
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>STATUS</th>
+                        <td>
+                            {% if user_detalhes.is_active == True %}
+                            <a style="cursor:default;" class="waves-effect waves-light btn-small green"><i class="material-icons left">check</i>Ativo</a>
+                            {% else %}
+                            <a style="cursor:default;" class="btn disabled "><i class="material-icons left">close</i>Inativo</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>MEMBRO DA EQUIPE</th>
+                        <td>
+                            {% if user_detalhes.is_superuser == True %}
+                            <a style="cursor:default;" class="btn-floating btn-small waves-effect waves-light green "><i class="material-icons">check</i></a>
+                            {% else %}
+                            <a style="cursor:default;" class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">close</i></a>   
+                            {% endif %}                          
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>DATA DO ULTIMO LOGIN</th>
+                        <td>{{ user_detalhes.last_login }}</td>
+                    </tr>
+                    <tr>
+                        <th>DATA DA CRIAÇÃO</th>
+                        <td>{{ user_detalhes.date_joined }}</td>
+                    </tr>
+                    <tr>
+                        <th>SENHA</th>
+                        <td>{{ user_detalhes.password }}</td>
+                    </tr>
+
+                  </table>
+                 
+                                
+               
+             
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div><br>        
+        <a href="#topo" class="btnedit btn-small deep-purple darken-1 " title="Voltar ao início da página">
+          Topo<i class="material-icons right">arrow_upward</i>
+        </a>     
+    
+    </div>
+    
+<!-- Modal Structure -->
+<div id="modal_confirma" class="modal">
+  <div class="modal-content">
+    <b><h4 style="color: crimson;">Deseja realmente excluir!</h4></b>
+    <p>Esse registro será excluido e não poderar se recuperado...</p>
+  </div>
+  <div class="modal-footer">
+    <a href="/ata/delete/{{atas.id}}/">
+      <button class="btnDelet red darken-1 btn-small " title="DELATAR" type="button">
+        Deletar<i class="material-icons right">delete_forever</i>
+      </button>
+    </a>    
+    <a href="/ata/detalhes/{{atas.id}}" class="modal-close green darken-1  btn">Cancelar<i class="material-icons right">close</i></a>
+  </div>
+</div>
+
+
+        
+
+
+{% endblock %}
+{% block java %}{% include 'base/javaScripts.html' %}{% endblock %}

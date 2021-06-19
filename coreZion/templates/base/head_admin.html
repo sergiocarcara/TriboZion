@@ -1,0 +1,45 @@
+{% load static %}
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Admin Page Level CSS-->
+<link rel="stylesheet" type="text/css" href="{% static 'css/page_admin/materialize.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/page_admin/page-faq.min.css' %}">
+<!-- END: Page Level CSS-->
+
+<!-- BEGIN: Custom CSS-->
+<link rel="stylesheet" type="text/css" href="{% static 'css/page_admin/custom.css' %}">
+
+<!--ckiditor-->
+<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<!--
+<script src="https://cdn.ckeditor.com/ckeditor5/19.1.1/classic/ckeditor.js"></script>-->
+
+
+
+<!--Imprimir uma pagina-->
+<script>
+    function printPage(id)
+    {
+       var html="<html>";
+       html+= document.getElementById(id).innerHTML;
+    
+       html+="</html>";
+    
+       var printWin = window.open();
+       printWin.document.write(html);
+       printWin.document.close();
+       printWin.focus();
+       printWin.print();
+       printWin.close();
+    }
+</script>

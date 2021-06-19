@@ -1,0 +1,301 @@
+'<!-- Exteção do arquivo de base html-->
+{% extends 'base/base_admin.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}Detalhes do Atleta{% endblock %}
+{% block head %}{% include 'base/head_admin.html' %}{% endblock %}
+
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'include/nave_admin.html' %}
+
+{% endblock %}
+
+
+<!-- Titulo do conteudo-->
+
+{% block titulo_page %}
+
+<br><br>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">  
+
+      <a href="/logout/" class="waves-effect red waves-light btn-large">
+        <i class="material-icons left">highlight_off</i> Sair
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left">account_circle
+        </i> {{ user }}
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left"> person_outline
+        </i>
+       {{ user.first_name }}
+      </a>    
+      <h5 class="right-align blue-text">
+        <b>{% include 'include/data_hora.html' %}</b>
+      </h5>   
+      <div class="divider"></div>
+  </div>    
+</div>
+
+{% endblock %}
+
+<!-- Fim Titulo page-->
+
+<!--Titulo do contene-->
+
+{% block title_contine %}
+<a class="btn-large disabled">
+  <i class="material-icons left">format_list_bulleted</i>
+  DETALHES- Atletas
+</a>
+
+<a class="indigo dark-2 waves-effect waves-light btn-large" href="/administrativo/" title="Painel Administrativo">
+  <i class="material-icons left">apps</i>Painel Administrativo
+</a>
+
+<a class="green waves-effect waves-teal btn-large" href="/atleta/lista/" title="Voltar a lista de Atletas">
+  <i class="material-icons left">format_list_bulleted</i>Lista de Atletas
+</a>       
+{% endblock %}
+
+<!--fim-->
+
+<!--Conteudo da Pagina-->
+
+{% block conteudo %} 
+       
+    <br>
+    <div class="row col s12">
+        <a href="/atleta/cadastro/" data-target="modal1" class="btnedit modal-trigger btn-small blue darken-1 " title="Cadastrando um Atleta">
+          Cadastro de Atletas<i class="material-icons right">library_add</i>
+        </a>
+        <a href="/atleta/cadastro/?id={{ alunos.id }}" data-target="modal1" class="btnedit modal-trigger btn-small deep-purple darken-1 " title="Atualizando registro">
+          Editar<i class="material-icons right">edit</i>
+        </a>
+        <a class="btnDelet red darken-1 btn-small  modal-trigger" title="Apagar registro" href="#modal_confirma">
+          Apagar<i class="material-icons right">delete_forever</i>
+        </a>
+        <button class="btnDelet green darken-1 btn-small" onclick="printPage('print');" title="Imprimir ou salva (PFD)">
+          Imprimir<i class="material-icons right">print</i><i class="material-icons right">picture_as_pdf</i> - PDF
+        </button>   
+        <div class="row">
+          <div class="col s12 m12">
+            <div class="card-panel " >
+              
+                <div class="row">
+                    <div class="col s4 m3">
+                      <br>
+                      <div class="card">
+                        <div class="card-image">
+                          <img src="{{alunos.imagem.url}}">
+                          
+                        </div>
+
+                        <div class="card-content">
+                          <p>{{alunos.nome}}</p>
+                        </div>
+
+                        <div class="card-action">
+                          <a href="#">{{alunos.faixas}}</a>
+                        </div>                        
+                      </div>
+                      
+                    </div><br>
+                    <ul class="collection with-header">
+                      <li class="collection-header"><h4>CADASTRO DO ATLETA</h4></li>
+                      <br>
+                      <li class="collection-header">                        
+                        <a class="indigo dark-2  btn-small">
+                          <span>Autor:</span>
+                          <i class="material-icons left">account_circle</i>{{alunos.diretores}}
+                        </a>
+                        
+                        <a class="orang dark-2  btn-small">
+                         <span><b>Criado: </b></span>
+                          {{alunos.data_criacao}}
+                        </a>
+                       
+                        {% if alunos.active == True %}
+                        <a class="green dark-2  btn-small">
+                          <span>Statu:</span>
+                          Ativado
+                        </a>
+                        {% else %}
+                        <a class="btn-small disabled">
+                          <span>Statu:</span>
+                          INATIVO
+                         </a>
+                        {% endif %}
+                      <hr>
+                        <h5>DADOS PESSOAIS:</h5>
+                      
+                      </li>
+                      <table style="width:100%" id="print">
+                        <tr>
+                          <th><h6><b>NOME COMPLETO:</b></h6></th>
+                          <td><h7>{{alunos.nome}}</h7></td>                        
+                        </tr>
+                        <tr>
+                          <th><h6><b>APELIDO - NOME:</h6></b></th>
+                          <td>{{alunos.nomesobre}}</td>
+                        </tr>
+                        <tr>
+                          <th><h6><b>CPF:</b></h6></th>
+                          <td>{{alunos.cpf}}</td>                        
+                        </tr>              
+                        <tr>
+                          <th><h6><b>RG:</b></h6></th>
+                          <td>{{alunos.rg}}</td>
+                        </tr>
+                        <tr>
+                          <th><h6><b>NOME PAI:</b></h6></th>
+                          <td>{{alunos.pai}}</td>
+                        </tr>
+                        <tr>
+                          <th><h6><b>NOME MÃE:</b></h6></th>
+                          <td>{{alunos.mae}}</td>
+                        </tr>
+                        <tr>
+                          <th><h6><b>TELEFONE:</b></h6></th>
+                          <td>{{alunos.telefone}}</td>
+                        </tr>
+                        <tr>
+                          <th><h6><b>TELE. RESPONSAVEL:</b></h6></th>
+                          <td>{{alunos.tele_resp}}</td>
+                        </tr>
+                        <tr>
+                          <th><h6><b>RENDA FAMILIAR:</b></h6></th>
+                          <td>{{alunos.renda_fami}}</td>
+                        </tr>
+                        <tr>
+                          <th><h6><b>FAMILIA ( QUANTIDADE ):</b></h6></th>
+                          <td>{{alunos.quan_pesso}} PESSOAS</td>
+                        </tr>
+                        <tr>
+                          <th><h6><b>E-MAIL ( FEDERAÇÃO ):</b></h6></th>
+                          <td>{{alunos.email_federa}}</td>
+                        </tr>                                       
+                      </table>
+                                                    
+                      <li class="collection-header"><h5>ENDEREÇO RESIDENCIAL</h5></li>
+                      <table style="width:100%">
+                        <tr>
+                          <th><h6><b>BAIRRO:</b></h6></th>
+                          <td><h7>{{alunos.bairro}}</h7></td>                        
+                        </tr>
+                        <tr>
+                          <th><h6><b>RUA:</h6></b></th>
+                          <td>{{alunos.endereco}}</td>
+                        </tr>
+                        <tr>
+                          <th><h6><b>N° (RECIDENCIA):</b></h6></th>
+                          <td>{{alunos.numero}}</td>                        
+                        </tr>              
+                        <tr>
+                          <th><h6><b>CEP:</b></h6></th>
+                          <td>{{alunos.cep}}</td>                        
+                        </tr>  
+                      </table>
+
+                      <li class="collection-header"><h5>DADOS COMPLEMENTARES:</h5></li>
+                      <table style="width:100%">
+                        <tr>
+                          <th><h6><b>TIPO SANGUINEO:</b></h6></th>
+                          <td><h7>{{alunos.tipo_sang}}</h7></td>                        
+                        </tr>
+                        <tr>
+                          <th><h6><b>N° CARTÃO SUS:</h6></b></th>
+                          <td>{{alunos.cartao_sus}}</td>
+                        </tr>
+                        <tr>
+                          <th><h6><b>ESCOLARIDADE:</b></h6></th>
+                          <td>{{alunos.escolaridade}}</td>                        
+                        </tr>              
+                        <tr>
+                          <th><h6><b>SÉRIE:</b></h6></th>
+                          <td>{{alunos.serie}}</td>
+                        </tr>
+                        <tr>
+                          <th><h6><b>NOME DA ESCOLA:</b></h6></th>
+                          <td>{{alunos.nome_escola}}</td>
+                        </tr>
+                        <tr>
+                          <th><h6><b>CEDE DE TREINAMENTO:</b></h6></th>
+                          <td>{{alunos.unidade_treino}}</td>
+                        </tr>
+                        <tr>
+                          <th><h6><b>GRADUAÇÃO:</b></h6></th>
+                          <td>{{alunos.faixas}}</td>
+                        </tr>
+                        <tr>
+                          <th><h6><b>PESSO ATUAL:</b></h6></th>
+                          <td>{{alunos.peso}} Kilogramas</td>
+                        </tr>                        
+                        <tr>
+                          <th><h6><b>DESCRIÇÃO:</b></h6></th>
+                          <td>{{alunos.texto}}</td>
+                        </tr>
+                                                                                   
+                      </table>
+
+                    </ul>
+                    
+                    
+                  </div>
+                </div> 
+            
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div><br>        
+        <a href="#topo" class="btnedit btn-small deep-purple darken-1 " title="Voltar ao início da página">
+          Topo<i class="material-icons right">arrow_upward</i>
+        </a>     
+    
+    </div>
+    
+<!-- Modal Structure -->
+<div id="modal_confirma" class="modal">
+  <div class="modal-content">
+    <b><h4 style="color: crimson;">Deseja realmente excluir!</h4></b>
+    <p>Esse registro será excluido e não poderar se recuperado...</p>
+  </div>
+  <div class="modal-footer">
+    <a href="/atleta/delete/{{alunos.id}}/">
+      <button class="btnDelet red darken-1 btn-small " title="DELATAR" type="button">
+        Deletar<i class="material-icons right">delete_forever</i>
+      </button>
+    </a>    
+    <a href="/atleta/detalhes/{{alunos.id}}" class="modal-close green darken-1  btn">Cancelar<i class="material-icons right">close</i></a>
+  </div>
+</div>
+<style>
+
+table{
+  padding-top: 10px;
+	text-align: center;
+	font-family : "Times New Roman", Times, serif;
+	width: 20%;
+	font-size: 18px;	
+	background-color: #ffffe6;
+}
+
+th,td{
+	border: 1px solid black;
+	padding: 5px;
+}
+th, tr:hover{
+	background-color: #d1e0e0;
+}
+  
+  </style>
+
+{% endblock %}
+{% block java %}{% include 'base/javaScripts.html' %}{% endblock %}'

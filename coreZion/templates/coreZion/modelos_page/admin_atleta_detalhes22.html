@@ -1,0 +1,228 @@
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base_admin.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}Detalhes do Atleta{% endblock %}
+{% block head %}{% include 'base/head_admin.html' %}{% endblock %}
+
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'include/nave_admin.html' %}
+
+{% endblock %}
+
+
+<!-- Titulo do conteudo-->
+
+{% block titulo_page %}
+
+<br><br>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container" id="topo">  
+
+      <a href="/logout/" class="waves-effect red waves-light btn-large">
+        <i class="material-icons left">highlight_off</i> Sair
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left">account_circle
+        </i> {{ user }}
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left"> person_outline
+        </i>
+       {{ user.first_name }}
+      </a>    
+      <h5 class="right-align blue-text">
+        <b>{% include 'include/data_hora.html' %}</b>
+      </h5>   
+      <div class="divider"></div>
+  </div>    
+</div>
+
+{% endblock %}
+
+<!-- Fim Titulo page-->
+
+<!--Titulo do contene-->
+
+{% block title_contine %}
+<div class="w3-responsive">
+  <div class="w3-card-4 test" style="width:15%;">
+    <a href="#">
+    <img src="{{alunos.imagem.url}}" title="{{alunos.nomesobre}}" onclick="document.getElementById('modal01').style.display='block'" class="w3-hover-opacity" alt="Norway" style="width:100%">
+    </a>
+  </div>
+</div>
+<div id="modal01" class="w3-modal w3-animate-zoom" onclick="this.style.display='none'">
+  <img class="w3-modal-content" src="{{alunos.imagem.url}}">
+</div>
+{% endblock %}
+
+<!--fim-->
+
+<!--Conteudo da Pagina-->
+
+{% block conteudo %} 
+ <br>
+    <a class="indigo dark-2 waves-effect waves-light btn-small" href="/administrativo/" title="Painel Administrativo">
+      <i class="material-icons left">apps</i>Painel Adminstrativo
+    </a>
+    <a class="green waves-effect waves-teal btn-small" href="/atleta/lista/" title="Voltar a lista de atas">
+      <i class="material-icons left">format_list_bulleted</i>Lista de Atas
+    </a>          
+    <br><br>
+    <div class="divider"></div>
+    <br>
+    <div class="row col s12">
+        <a href="/atleta/cadastro/" data-target="modal1" class="btnedit modal-trigger btn-small blue darken-1 " title="Cadastrando um Atleta">
+          Cadastro de Atletas<i class="material-icons right">library_add</i>
+        </a>
+        <a href="#" data-target="modal1" class="btnedit modal-trigger btn-small deep-purple darken-1 " title="Atualizando registro">
+          Editar<i class="material-icons right">edit</i>
+        </a>
+        <a class="btnDelet red darken-1 btn-small  modal-trigger" title="Apagar registro" href="#modal_confirma">Apagar<i class="material-icons right">delete_forever</i></a>
+        <button class="btnDelet green darken-1 btn-small" onclick="printPage('print');" title="Imprimir ou salva (PFD)">
+          Imprimir<i class="material-icons right">print</i><i class="material-icons right">picture_as_pdf</i> - PDF
+        </button> 
+    </div><hr><br><br> 
+
+
+    <div class="row col s12" id="print">
+        <div class="w3-cell-row" style="width:100%">           
+
+            <ul class="w3-ul w3-border">
+              <li><h4>Dados Pessoais:</h4></li>              
+            </ul>         
+            <table class="w3-table-all w3-hoverable">             
+              <tr>
+                <th><h6><b>NOME COMPLETO:</b></h6></th>
+                <td><h7>{{alunos.nome}}</h7></td>                        
+              </tr>
+              <tr>
+                <th><h6><b>APELIDO - NOME:</h6></b></th>
+                <td>{{alunos.nomesobre}}</td>
+              </tr>
+              <tr>
+                <th><h6><b>CPF:</b></h6></th>
+                <td>{{alunos.cpf}}</td>                        
+              </tr>              
+              <tr>
+                <th><h6><b>RG:</b></h6></th>
+                <td>{{alunos.rg}}</td>
+              </tr>
+              <tr>
+                <th><h6><b>NOME PAI:</b></h6></th>
+                <td>{{alunos.pai}}</td>
+              </tr>
+              <tr>
+                <th><h6><b>NOME MÃE:</b></h6></th>
+                <td>{{alunos.mae}}</td>
+              </tr>
+              <tr>
+                <th><h6><b>TELEFONE:</b></h6></th>
+                <td>{{alunos.telefone}}</td>
+              </tr>
+              <tr>
+                <th><h6><b>TELE. RESPONSAVEL:</b></h6></th>
+                <td>{{alunos.tele_resp}}</td>
+              </tr>
+              <tr>
+                <th><h6><b>RENDA FAMILIAR:</b></h6></th>
+                <td>{{alunos.renda_fami}}</td>
+              </tr>
+              <tr>
+                <th><h6><b>FAMILIA ( QUANTIDADE ):</b></h6></th>
+                <td>{{alunos.quan_pesso}} PESSOAS</td>
+              </tr>
+              <tr>
+                <th><h6><b>E-MAIL ( FEDERAÇÃO ):</b></h6></th>
+                <td>{{alunos.email_federa}}</td>
+              </tr>             
+              
+            </table><br><br>
+   
+            <ul class="w3-ul w3-border">
+              <li><h4>Endereço:</h4></li>              
+            </ul>    
+            <table class="w3-table-all w3-hoverable"> 
+              <tr>
+                <th><h6><b>BAIRRO:</b></h6></th>
+                <td><h7>{{alunos.bairro}}</h7></td>                        
+              </tr>
+              <tr>
+                <th><h6><b>RUA:</h6></b></th>
+                <td>{{alunos.endereco}}</td>
+              </tr>
+              <tr>
+                <th><h6><b>N° (RECIDENCIA):</b></h6></th>
+                <td>{{alunos.numero}}</td>                        
+              </tr>              
+              <tr>
+                <th><h6><b>CEP:</b></h6></th>
+                <td>{{alunos.cep}}</td>                        
+              </tr>  
+            </table><br><br>
+            <ul class="w3-ul w3-border">
+              <li><h4>Dados Complementares:</h4></li>              
+            </ul>    
+            <table class="w3-table-all w3-hoverable"> 
+              <tr>
+                <th><h6><b>TIPO SANGUINEO:</b></h6></th>
+                <td><h7>{{alunos.tipo_sang}}</h7></td>                        
+              </tr>
+              <tr>
+                <th><h6><b>N° CARTÃO SUS:</h6></b></th>
+                <td>{{alunos.cartao_sus}}</td>
+              </tr>
+              <tr>
+                <th><h6><b>ESCOLARIDADE:</b></h6></th>
+                <td>{{alunos.escolaridade}}</td>                        
+              </tr>              
+              <tr>
+                <th><h6><b>SÉRIE:</b></h6></th>
+                <td>{{alunos.serie}}</td>
+              </tr>
+              <tr>
+                <th><h6><b>NOME DA ESCOLA:</b></h6></th>
+                <td>{{alunos.nome_escola}}</td>
+              </tr>
+              <tr>
+                <th><h6><b>CEDE DE TREINAMENTO:</b></h6></th>
+                <td>{{alunos.unidade_treino}}</td>
+              </tr>
+              <tr>
+                <th><h6><b>GRADUAÇÃO:</b></h6></th>
+                <td>{{alunos.faixas}}</td>
+              </tr>
+              <tr>
+                <th><h6><b>PESSO ATUAL:</b></h6></th>
+                <td>{{alunos.peso}} Kilogramas</td>
+              </tr>                        
+              <tr>
+                <th><h6><b>DESCRIÇÃO:</b></h6></th>
+                <td>{{alunos.texto}}</td>
+              </tr>
+            </table><br>
+            <a href="#topo">
+            <button class="w3-button w3-indigo">Topo</button>
+            </a>
+            <table class="w3-table-all w3-hoverable"> 
+
+            </table>
+
+        </div>
+
+
+
+    </div>
+
+
+{% endblock %}
+{% block java %}{% include 'base/javaScripts.html' %}{% endblock %}
+
+

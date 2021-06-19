@@ -1,0 +1,64 @@
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}:...Projeto-Tribo Zion - Eventos...:{% endblock %}
+
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'include/nave_evento.html' %}
+
+{% endblock %}
+
+
+<!-- Titulo do conteudo-->
+
+{% block titulo_page %}
+
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">       
+    <h3 class="header orange-text">EVENTOS</h3>   
+    <hr style="border-color:hotpink ; border-width: 1,5px; ">    
+  </div>
+</div>
+
+{% endblock %}
+
+<!-- Fim Titulo page-->
+
+
+<!--Conteudo da Pagina-->
+{% block conteudo %}
+
+<div class="row">
+  {% for eventos in eventos_page %}
+  <div class="col s6 m6">
+    <div class="card blue-grey darken-5">
+      <div class="card-content white-text">
+        <span class="card-title">{{eventos.titulo | slice:"0:55"}}...</span>
+        <p>Publicado em: {{eventos.data_criacao}}</p>
+      </div>
+      <div class="card-action">
+
+        {% if eventos.active == True %}
+        <a href="{{eventos.link}}" class="btn green">Incrição aqui</a>
+        <a  href="/eventos/page/detalhes/{{eventos.id}}/" class="btn blue">Detalhe do evento</a>
+        {% else %}
+        <a href="#" class="btn disabled">Incrições Encerradas</a>
+        <a  href="/eventos/page/detalhes/{{eventos.id}}/" class="btn blue">Detalhe do evento</a>
+        {% endif %}
+        
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+    
+
+{% endblock %}
+<!--Fim do Conteudo da Pagina-->

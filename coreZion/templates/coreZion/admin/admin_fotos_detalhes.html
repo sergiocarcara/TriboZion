@@ -1,0 +1,148 @@
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base_admin.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}Detalhes Fotos{% endblock %}
+{% block head %}{% include 'base/head_admin.html' %}{% endblock %}
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'include/nave_admin.html' %}
+
+{% endblock %}
+
+
+<!-- Titulo do conteudo-->
+
+{% block titulo_page %}
+
+<br><br>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">  
+
+      <a href="/logout/" class="waves-effect red waves-light btn-large">
+        <i class="material-icons left">highlight_off</i> Sair
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left">account_circle
+        </i> {{ user }}
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left"> person_outline
+        </i>
+       {{ user.first_name }}
+      </a>    
+      <h5 class="right-align blue-text">
+        <b>{% include 'include/data_hora.html' %}</b>
+      </h5>   
+      <div class="divider"></div>
+  </div>    
+</div>
+
+{% endblock %}
+
+<!-- Fim Titulo page-->
+
+<!--Titulo do contene-->
+
+{% block title_contine %}
+<a class="btn-large disabled">
+  <i class="material-icons left">format_list_bulleted</i>DTALHES - FOTOS
+</a>
+<a class="indigo dark-2 waves-effect waves-light btn-large" href="/administrativo/" title="Painel Administrativo">
+  <i class="material-icons left">apps</i>PAINEL ADMINISTRATIVO
+</a>
+<a class="green waves-effect waves-teal btn-large" href="/fotos/galeria/" title="Voltar a lista de atas">
+  <i class="material-icons left">format_list_bulleted</i>LISTA DE FOTOS
+</a>     
+
+{% endblock %}
+
+<!--fim-->
+
+<!--Conteudo da Pagina-->
+
+{% block conteudo %} 
+    <br>
+    <a href="/fotos/cadastro/" data-target="modal1" class="btnedit modal-trigger btn-small blue darken-1 " title="NOVA GALERIA DE FOTOS">
+      Nova Galeria de fotos<i class="material-icons right">library_add</i>
+    </a>
+
+    <a href="#" data-target="modal1" class="btnedit modal-trigger btn-small deep-purple darken-1 " title="Atualizando Galeria">
+      Editar<i class="material-icons right">edit</i>
+    </a>
+
+    <a class="btnDelet red darken-1 btn-small  modal-trigger" title="Apagar Galeria" href="#modal_confirma">
+      Apagar<i class="material-icons right">delete_forever</i>
+    </a> 
+    
+    <br><br>
+    <div class="divider"></div>
+    <br>
+    <h4>{{ fotos_detal.titulo}}</h4> 
+    <div class="row card">  
+      
+      <div class="col s12 m4 14">
+        <img  src="{{ fotos_detal.imagen1.url }}" class="materialbox responsive-img card">
+      </div>
+      <div class="col s12 m4 14">
+        <img src="{{  fotos_detal.imagen2.url }}" class="materialbox responsive-img card">
+      </div>
+      <div class="col s12 m4 14">
+        <img src="{{  fotos_detal.imagen3.url }}" class="materialbox responsive-img card">
+      </div>
+      <div class="col s12 m4 14">
+        <img src="{{  fotos_detal.imagen4.url }}" class="materialbox responsive-img card">
+      </div>  
+      <div class="col s12 m4 14">
+        <img src="{{  fotos_detal.imagen5.url }}" class="materialbox responsive-img card">
+      </div>  
+      <div class="col s12 m4 14">
+        <img src="{{  fotos_detal.imagen6.url }}" class="materialbox responsive-img card">
+      </div>  
+      <div class="col s12 m4 14">
+        <img src="{{  fotos_detal.imagen7.url }}" class="materialbox responsive-img card">
+      </div>  
+      <div class="col s12 m4 14">
+        <img src="{{  fotos_detal.imagen8.url }}" class="materialbox responsive-img card">
+      </div>  
+      <div class="col s12 m4 14">
+        <img src="{{  fotos_detal.imagen9.url }}" class="materialbox responsive-img card">
+      </div>  
+      <div class="col s12 m4 14">
+        <img src="{{  fotos_detal.imagen10.url }}" class="materialbox responsive-img card">
+      </div>        
+    
+    </div>   
+    <div class="divider"></div><br>        
+    <a href="#topo" class="btnedit btn-small deep-purple darken-1 " title="Voltar ao início da página">
+        Topo<i class="material-icons right">arrow_upward</i>
+    </a>   
+
+    
+<!-- Modal Structure -->
+<div id="modal_confirma" class="modal">
+  <div class="modal-content">
+    <b><h4 style="color: crimson;">Deseja realmente excluir a Galeria de Fotos!</h4></b>
+    <p>Esse registro será excluido e não poderar se recuperado...</p>
+  </div>
+  <div class="modal-footer">
+    <a href="/fotos/delete/{{fotos_detal.id}}/">
+      <button class="btnDelet red darken-1 btn-small " title="DELATAR" type="button">
+        Deletar<i class="material-icons right">delete_forever</i>
+      </button>
+    </a>    
+    <a href="/fotos/galeria/detalhes/{{fotos_detal.id}}" class="modal-close green darken-1  btn">Cancelar<i class="material-icons right">close</i></a>
+  </div>
+</div>
+
+
+        
+
+
+{% endblock %}
+{% block java %}{% include 'base/javaScripts.html' %}{% endblock %}

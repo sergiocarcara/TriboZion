@@ -1,0 +1,95 @@
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base_admin.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}Detalhes Diretores{% endblock %}
+{% block head %}{% include 'base/head_admin.html' %}{% endblock %}
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'include/nave_admin.html' %}
+
+{% endblock %}
+
+
+<!-- Titulo do conteudo-->
+
+{% block titulo_page %}
+
+<br><br>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">  
+
+      <a href="/logout/" class="waves-effect red waves-light btn-large">
+        <i class="material-icons left">highlight_off</i> Sair
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left">account_circle
+        </i> {{ user }}
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left"> person_outline
+        </i>
+       {{ user.first_name }}
+      </a>    
+      <h5 class="right-align blue-text">
+        <b>{% include 'include/data_hora.html' %}</b>
+      </h5>   
+      <div class="divider"></div>
+  </div>    
+</div>
+
+{% endblock %}
+
+<!-- Fim Titulo page-->
+
+<!--Titulo do contene-->
+
+{% block title_contine %}
+<a class="btn-large disabled">
+  <i class="material-icons left">format_list_bulleted</i>DTALHES - DIRETORES
+</a>
+<a class="indigo dark-2 waves-effect waves-light btn-large" href="/administrativo/" title="Painel Administrativo">
+  <i class="material-icons left">apps</i>PAINEL ADMINISTRATIVO
+</a>
+<a class="green waves-effect waves-teal btn-large" href="/diretoria/lista/" title="Voltar a lista de atas">
+  <i class="material-icons left">format_list_bulleted</i>LISTA DE DIRETORES
+</a>     
+
+{% endblock %}
+
+<!--fim-->
+
+<!--Conteudo da Pagina-->
+
+{% block conteudo %} 
+    
+               
+      <div id="horizontal-card" class="section">
+        <h4 class="header">{{diretoDetalhe.funcao}}</h4>
+        <p>{{diretoDetalhe.nome}}</p>
+        <div class="row">
+          <div class="col s12 m6 l6">
+            <div class="card horizontal">
+              <div class="card-image"><img src="{{diretoDetalhe.imagem.url}}" alt=""></div>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <p>{{diretoDetalhe.texto | safe}}</p>
+                </div>
+                <div class="card-action"><a href="#">{{diretoDetalhe.data_criacao}}</a></div>
+              </div>
+            </div>
+          </div>          
+        </div>
+      </div>
+      
+
+        
+
+
+{% endblock %}
+{% block java %}{% include 'base/javaScripts.html' %}{% endblock %}

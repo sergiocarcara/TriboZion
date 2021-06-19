@@ -1,0 +1,5 @@
+
+depois de alterar e testar o código
+git add .
+git commit -m 'o que vc alterou'
+git push heroku master

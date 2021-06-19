@@ -1,0 +1,381 @@
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base_admin.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}PAINEL ADMINISTRATIVO{% endblock %}
+{% block head %}{% include 'base/head_admin.html' %}{% endblock %}
+
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'include/nave_admin.html' %}
+
+{% endblock %}
+
+
+<!-- Titulo do conteudo-->
+
+{% block titulo_page %}
+
+<br><br>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">  
+
+      <a href="/logout/" class="waves-effect red waves-light btn-large">
+        <i class="material-icons left">highlight_off</i> Sair
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left">account_circle
+        </i> {{ user }}
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left"> person_outline
+        </i>
+       {{ user.first_name }}
+      </a>    
+      <h5 class="right-align blue-text">
+        <b>{% include 'include/data_hora.html' %}</b>
+      </h5>   
+      <div class="divider"></div>
+  </div>    
+</div>
+
+{% endblock %}
+
+<!-- Fim Titulo page-->
+
+<!--Titulo do contene-->
+
+{% block title_contine %}
+    <a class="btn-large disabled">
+      <i class="material-icons left">description</i>Cadastro de Atleta
+    </a>   
+    <a href="/administrativo/" class="btn-large indigo dark-2">
+      <i class="material-icons left">apps</i>Painel Administrativo
+    </a>   
+    <a href="/atleta/lista/" class="btn-large green">
+      <i class="material-icons left">format_list_bulleted</i>Lista de Atleta
+    </a>    
+    
+    
+{% endblock %}
+
+<!--fim-->
+
+<!--Conteudo da Pagina-->
+{% block conteudo %}
+
+<div class="row">
+    <br><div>
+      <a href="#dadosP" class="btn-small blue">
+        <i class="material-icons left">description</i>Dados pessoais
+      </a> 
+      <a href="#end" class="btn-small green">
+        <i class="material-icons left">description</i>Endereço
+      </a> 
+      <a href="#dadosC" class="btn-small pink">
+        <i class="material-icons left">description</i>Dados Coplemetares
+      </a> 
+    </div>  
+    <form enctype="multipart/form-data" class="col s12" action="submit" method="POST">{% csrf_token %}
+      
+      <br><br>
+      <h4 class="header orange-text" id="dadosP">Dados Pessoais:</h4><br>
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <input style="text-transform: uppercase;"  id="first_name" type="text" class="validate" name="nome">
+          <label for="first_name">Nome Completo:</label>
+        </div>
+
+        <div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <input style="text-transform: uppercase;"  id="apelido" type="text" class="validate" name="nomeComp">
+          <label for="apelido">Apelido:</label>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s4">
+          <i class="material-icons prefix">assignment</i>
+          <input  id="cpf" type="text" class="cpf" name="cpf">
+          <label for="cpf">CPF:</label>
+        </div>
+
+        <div class="input-field col s4">
+          <i class="material-icons prefix">fingerprint</i>
+          <input name="rg" id="rg" type="text" class="validate" placeholder="Somente numeros" maxlength="15" pattern="[0-9]+$">
+          <label for="rg">RG:</label>
+        </div>
+
+        <div class="input-field col s4">
+            <i class="material-icons prefix">event_note</i>
+            <input id="data" type="text" class="datepicker" name="dtnasc">
+            <label for="data">Data de Nascimento:</label>
+        </div>
+      </div> 
+      
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">face</i>
+          <input style="text-transform: uppercase;" id="pai" type="text" class="validate" name="pai" >
+          <label for="pai">Nome Pai:</label>
+        </div>
+
+        <div class="input-field col s6">
+          <i class="material-icons prefix">face</i>
+          <input style="text-transform: uppercase;" id="mae" type="text" class="validate" name="mae">
+          <label for="mae">Nome da Mãe:</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s4">
+          <i class="material-icons prefix">local_phone</i>
+          <input id="teleAtle" type="text" class="phone_us" name="tele"/>
+          <label for="teleAtle">Telefone do Atleta:</label>
+        </div>
+
+        <div class="input-field col s4">
+          <i class="material-icons prefix">local_phone</i>
+          <input id="teleResp" type="text" class="phone_us" name="telResp">
+          <label for="teleResp">Tele. Responssável:</label>
+        </div>
+
+        <div class="input-field col s4">
+            <i class="material-icons prefix">people</i>
+            <input name="familia" id="famiQant" type="text" class="validate" placeholder="Quat. de pessoas em casa" maxlength="2">
+            <label for="famiQant">Família (Quantidade):</label>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col s4 m4">
+          <i class="material-icons prefix">attach_money</i>
+          <label><h6>Renda Familiar</h6></label>
+            <select name="renda_fami" class="browser-default">
+                <option value="" disabled="" selected="">Selecione uma Opção</option>
+                <option value="ATE 1 SALARIO MÍNIMO">ATE 1 SALARIO MÍNIMO</option>
+                <option value="DE 1 A 2 SALARIOAS MÍNIMOS">DE 1 A 2 SALARIOAS MÍNIMOS</option>
+                <option value="DE 2 A 4 SALARIOAS MÍNIMOS">DE 2 A 4 SALARIOAS MÍNIMOS</option>
+                <option value="ACIMA DE 5 SLARIOS MÍNIMOS">ACIMA DE 5 SLARIOS MÍNIMOS</option>
+            </select>
+        </div>
+      </div> 
+      
+      <div class="row">
+        <div class="input-field col s12">
+            <i class="material-icons prefix">email</i>
+          <input id="email" type="email" class="validate" name="email">
+          <label for="email">Email</label>
+        </div>
+      </div> 
+
+      <br><br>
+      <h4 class="header orange-text" id="end">Endereço:</h4><br>
+      <div class="divider"></div><br><br>
+      <div class="row">
+
+        <div class="input-field col s4">
+          <i class="material-icons prefix">location_on</i>
+          <input style="text-transform: uppercase;" id="bairro" type="text" name="bairro">
+          <label for="bairro">Nome Bairro:</label>
+        </div> 
+        
+        <div class="input-field col s4">
+          <i class="material-icons prefix">location_on</i>
+          <input style="text-transform: uppercase;" id="rua" type="text" name="endereco">
+          <label for="rua">Nome da Rua:</label>
+        </div>
+
+        <div class="input-field col s4">
+          <i class="material-icons prefix">location_on</i>
+          <input id="numero" type="text" name="numero"/>
+          <label for="numero">Numero da Casa:</label>
+        </div>
+
+        <div class="input-field col s4">
+          <i class="material-icons prefix">location_on</i>
+          <input id="cep" type="text" class="cep" name="cep"/>
+          <label for="cep">Cep da Rua:</label>
+        </div>
+        
+        <div class="input-field col s4">
+          <i class="material-icons prefix">location_on</i>
+          <input style="text-transform: uppercase;" id="cidade" type="text">
+          <label for="cidade">Cidade:</label>
+        </div> 
+
+        <div class="input-field col s4">
+          <i class="material-icons prefix">location_on</i>
+          <input style="text-transform: uppercase;" id="estado" type="text">
+          <label for="estado">Estado:</label>
+        </div> 
+
+      </div>
+
+      <br><br>
+      <h4 class="header orange-text" id="dadosC">Dados Complementares:</h4><br>
+      <div class="divider"></div><br><br>
+      <div class="row">
+        <div class="col s6 m6">          
+          <label><h6>Tipo de Sangue:</h6></label>
+            <select name="tipoSangue" class="browser-default">
+                <option value="" disabled="" selected="">Selecione uma Opção</option>
+                <option value="TIPO DE SANGUE">A+</option>
+                <option value="TIPO DE SANGUE">A-</option>
+                <option value="TIPO DE SANGUE">B+</option>
+                <option value="TIPO DE SANGUE">B-</option>
+                <option value="TIPO DE SANGUE">AB+</option>
+                <option value="TIPO DE SANGUE">AB-</option>
+                <option value="TIPO DE SANGUE">O+</option>
+                <option value="TIPO DE SANGUE">O-</option>
+                <option value="TIPO DE SANGUE">FATOR Rh+</option>
+                <option value="TIPO DE SANGUE">FATOR Rh-</option>
+            </select>
+        </div>
+
+        <div class="col s6 m6">          
+          <label><h6>Escolaridade:</h6></label>
+            <select name="escolaridade" class="browser-default">
+                <option value="" disabled="" selected="">Selecione uma Opção</option>
+                <option value="Fundamental Incompleto">Fundamental Incompleto</option>
+                <option value="Fundamental Completo">Fundamental Completo</option>
+                <option value="Médio Incompleto">Médio Incompleto</option>
+                <option value="Médio Completo">Médio Completo</option>
+                <option value="Superior Incompleto">Superior Incompleto</option>
+                <option value="Superior Completo">Superior Completo</option>
+            </select>
+        </div>       
+
+      </div> 
+
+      <div class="row">
+
+        <div class="input-field col s4">
+          <i class="material-icons prefix">payment</i>
+          <input name="sus" id="sus" type="text" class="" placeholder="Somente numeros" maxlength="20">
+          <label for="sus">Cartão SUS Nº:</label>
+        </div>
+
+        <div class="input-field col s4">
+          <i class="material-icons prefix">school</i>
+          <input name="serie" id="serie" type="text" class="" placeholder="Somente numeros" maxlength="1">
+          <label for="serie">Série:</label>
+        </div>
+
+        <div class="input-field col s4">
+          <i class="material-icons prefix">fitness_center</i>
+          <input name="peso" id="peso" type="text" class="" placeholder="Ex:80.00" maxlength="7">
+          <label for="peso">Peso atual:</label>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col s4 m4">          
+          <label><h6>Cede de Treinamento:</h6></label>
+            <select name="treinar" class="browser-default">
+                <option value="" disabled="" selected="">Selecione uma Opção</option>
+                <option value="Ulisses Guimarães">Ulisses Guimarães</option>
+                <option value="Ayrton Senna">Ayrton Senna</option>
+                <option value="Floresta">Floresta</option>
+            </select>
+        </div>
+
+        <div class="col s4 m4">          
+          <label><h6>Graduação:</h6></label>
+            <select name="faixas" class="browser-default">
+                <option value="" disabled="" selected="">Selecione uma Opção</option>
+                <option value="FAIXA PRETA">FAIXA PRETA</option>
+                <option value="FAIXA ROXA">FAIXA ROXA</option>
+                <option value="FAIXA AZUL">FAIXA AZUL</option>
+                <option value="FAIXA MARROM">FAIXA MARROM</option>
+                <option value="FAIXA VERDE">FAIXA VERDE</option>
+                <option value="FAIXA LARANJA"> FAIXA LARANJA</option>
+                <option value="FAIXA AMARELA">FAIXA AMARELA</option>
+                <option value="FAIXA BRANCA">FAIXA BRANCA</option>
+            </select>
+        </div> 
+        
+        <div class="col s4 m4">          
+          <label><h6>Autor do cadastro:</h6></label>
+            <select name="diretor" class="browser-default">
+                <option value="" disabled="" selected="">Selecione uma Opção</option>
+                <option value="FINANCEIRO">FINANCEIRO</option>
+                <option value="SECRETARIA">SECRETARIA</option>
+                <option value="DERETOR GERAL">DIRETOR GERAL</option>
+            </select>
+        </div> 
+
+      </div> 
+
+      <div class="row">
+
+        <div class="input-field col s12">
+          <i class="material-icons prefix">school</i>
+          <input style="text-transform: uppercase;" name="escola" id="escola" type="text" class="">
+          <label for="escola">Nome da Escola:</label>
+        </div>
+
+        <div class="input-field col s12">
+          <i class="material-icons prefix">edit</i>
+          <textarea style="text-transform: uppercase;" name="descricao" id="textarea2" class="materialize-textarea" data-length="120"></textarea>
+          <label for="textarea2">Textarea</label>
+        </div>        
+      </div>      
+
+      <div class="row">
+        <div class="col s4 m4">          
+          <label><h6>Status do Atleta:</h6></label>
+            <select name="active" class="browser-default">
+                <option value="" disabled="" selected="">Selecione uma Opção</option>
+                <option value="True">Ativo</option>
+                <option value="False">Inativo</option>  
+            </select>
+        </div> 
+      </div>
+
+      <div class="row">
+        <div class="col s12">
+            <div class="file-field input-field">
+              <div class="btn">
+                <span>Selecione uma Foto</span>
+                <input type="file" name="file">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <br><br><hr><div class="row">
+        <button class="btn indigo dark-2 waves-effect waves-light " type="submit">
+          Salvar<i class="material-icons right">save</i>
+        </button>
+        <button class="btn red waves-effect waves-light " type="reset">Limpar
+          <i class="material-icons right">close</i>
+        </button>
+      </div>
+      
+    </form>
+
+    <div class="row">
+      <div class="col s1 m2 right">
+        <a href="#topo" class="btn blue" title="Voltar ao início da página" >
+          <i class="material-icons right">arrow_upward</i>Topo
+        </a> 
+      </div>
+    </div>
+    
+  </div>
+
+  
+
+{% endblock %}
+{% block java %}{% include 'base/javaScriptsCadastro1.html' %}{% endblock %}

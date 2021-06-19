@@ -1,0 +1,46 @@
+{% load static %}
+<footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <img src="{% static 'img/logo1.png' %}" width="43" height="48" title="Tribo Zion">
+          <a class="white-text" href="https://graciebarra.com.br/" target="_blank">
+           <img src="{% static 'img/gb-logo.png' %}" width="48" height="48" title="Gracie Barra">
+          </a>
+          <h5 class="white-text">{% include 'include/data_hora.html' %} </h5>
+          <p class="grey-text text-lighten-4">© Copyright - 2020, Página Desenvolvida por José Sergio
+          <a href="http://www.sergiocarcara.com.br/" target="_blank">(www.sergiocarcara.com.br)</a></p>
+            
+          <!--Iclusão de icon de redes sociais-->
+
+            {% include 'include/rede_social.html' %}
+
+          <!--fim-->
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Atalhos</h5>
+          <ul>
+            <li><a class="white-text" href="/fotos/">Fotos</a></li>
+            <li><a class="white-text" href="/eventos/">Eventos</a></li>
+            <li><a class="white-text" href="/diretoria/">Diretoria</a></li>
+            <li><a class="white-text" href="/contato/cadastro/">Contatos</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Parceiro</h5>
+          <ul>
+            <li><a class="white-text" href="https://graciebarra.com.br/" target="_blank">Gracie Barra</a></li>
+            <li><a class="white-text" href="https://www.facebook.com/grupovoluntariosajudar/" target="_blank">Grupo Ajudar</a></li>
+            <li><a class="white-text" href="#!">Parceiros</a></li>
+            <li><a class="white-text" href="#!">Parceiros</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+</footer>  

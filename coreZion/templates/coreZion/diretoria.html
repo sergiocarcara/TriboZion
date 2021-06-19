@@ -1,0 +1,80 @@
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}:...Projeto-Tribo Zion...:{% endblock %}
+
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'include/nave_diretoria.html' %}
+
+{% endblock %}
+
+
+<!-- Titulo do conteudo-->
+
+{% block titulo_page %}
+
+<div class="section no-pad-bot" id="index-banner">
+  
+  <div class="container">    
+    
+    <h4 class="header orange-text">DIRETORIA DA TRIBO ZION</h4>
+    
+    <hr style="border-color:hotpink ; border-width: 1,5px; ">
+   
+    <br><br>
+  </div>
+</div>
+
+{% endblock %}
+
+<!-- Fim Titulo page-->
+
+
+<!--Conteudo da Pagina-->
+
+{% block conteudo %}
+
+
+    <!--   Icon Section   -->
+    <div class="row">
+      {% for diretorias in diretoria %}
+      <div class="col s12 m3 13 center-align">
+        <div class="card">
+          <div class="card-content">
+            <img src="{{diretorias.imagem.url}}" width="70%">
+            <h5 class="center">{{ diretorias.nome}}</h5>            
+          </div>
+          <div class="card-action"><a href=""<h6 class="center">{{ diretorias.funcao}}</h6></a></div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <style>
+      body{
+        background: #eee;
+      }
+      .card h5:{
+        padding: 10px 0px;
+      }
+      .card{
+        transition: .5s;
+        background:  #eee;
+      }
+      .card:hover i , h5{
+        color: #c2185b;        
+      }
+      .card:hover{
+        transform: scale(1.03);
+        background: #fff;
+      }
+    </style>      
+
+{% endblock %}

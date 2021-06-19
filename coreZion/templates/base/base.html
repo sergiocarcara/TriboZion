@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<!--head-->
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  
+ {% include 'base/head.html' %}
+ 
+</head>
+<!--fim head-->
+
+<body>
+
+  <!--Nave bar menu -->
+  {% block navebar %}
+  
+  {% endblock %}
+  <!--Fim navebar-->
+
+  <!--Titulo da pagina-->
+  {% block titulo_page %}
+  
+  {% endblock %}
+  <!--fim titulo-->
+
+  <!--Conteudo da Pagina-->
+  <div class="container">
+    <div class="section">
+     
+
+        {% block conteudo %}
+
+        {% endblock %}        
+      <br><br>
+
+      <!--Area de comentario-->
+      <hr style="border-color: blue ; border-width: 1px; ">
+        <h5 class="center"><i class="material-icons">comment</i> Comente nossa pagina </h5>
+      <hr style="border-color: blue ;  border-width: 1px; ">
+      <div id="disqus_thread"></div>
+        <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tribo-de-zion.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      <!--fim-->
+      
+    </div>
+  </div>
+
+  <!--Fim do Conteudo-->
+
+
+  <!--footer--> 
+  
+  {% include 'base/footer.html' %}
+
+  <!--fim footer-->
+  
+  <!--  Scripts-->
+
+  {% include 'base/javaScripts.html' %}
+
+  <!--Fim Scripts-->
+
+  </body>
+</html>

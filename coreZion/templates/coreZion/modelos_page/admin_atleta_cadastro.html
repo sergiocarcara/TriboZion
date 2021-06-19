@@ -1,0 +1,396 @@
+
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base_admin.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}Cadastro Atletas{% endblock %}
+{% block head %}{% include 'base/head_admin_cadastro.html' %}{% endblock %}
+<!-- Menu da Pagina-->
+{% block navebar %}
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand"><b>Tribo - Zion</b></a>
+      <a class="navbar-brand "><b>{% include 'include/data_hora.html' %}</b></a>
+    </div>    
+    <ul class="nav navbar-nav navbar-right">
+      <li><a><span class="glyphicon glyphicon-user"></span> {{ user }}</a></li>
+      <li><a><span class="glyphicon glyphicon-user"></span> {{ user.first_name }}</a></li>
+      <li><a href="/logout/"><span class="glyphicon glyphicon-log-in"></span> Sair</a></li>
+    </ul>    
+</nav>
+<div id="topo"></div>
+{% endblock %}
+
+<!--Conteudo da Pagina-->
+
+{% block conteudo %} 
+<br><br><br><br>
+<hr style="border-color: blue;"">
+<h3>CADASTRO - Atletas do Projeto</h3>
+<hr style="border-color: blue;"">
+<a href="/administrativo/">    
+  <button class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon glyphicon-th"></span> Painel Administrativo</button>
+</a>
+<a href="/atleta/lista/">    
+  <button class="btn btn-success navbar-btn"><span class="glyphicon glyphicon glyphicon-th-list"></span> Lista de Atletas</button>
+</a>
+<br>
+                 
+        
+               
+<!--------------------Formulario------------------------------>
+
+<form enctype="multipart/form-data" class="form-horizontal" action="submit" method="POST">{% csrf_token %}
+  <fieldset>
+  <div class="panel panel-primary">
+      <div class="panel-heading">Cadastro de Atletas</div>
+      
+      <div class="panel-body">
+  <div class="form-group">
+  
+  <div class="col-md-11 control-label">
+          <p class="help-block"><h11>*</h11> Campo Obrigatório </p>
+  </div>
+  </div>
+
+  <!-- Text input dados pessoais-->
+  <hr><div id="newpost">
+    <div class="form-group">
+     <div class="col-md-3 control-label">
+         <h3>Dados Pessoais</h3>
+     </div>
+     </div>
+  
+  <div class="form-group">
+
+    <label class="col-md-2 control-label" for="nome">Nome Completo <h11>*</h11></label>  
+    <div class="col-md-4">
+     <input  name="nome" placeholder="" class="form-control input-md" type="text">
+    </div>
+
+    <label class="col-md-2 control-label" for="nomeComp">Nome ( Apelido )<h11>*</h11></label>  
+    <div class="col-md-4">
+     <input name="nomeComp" type="text" placeholder="Nome que voce é conhecido" class="form-control input-md" >
+    </div>
+
+  </div>  
+ 
+  <div class="form-group">
+    
+    <label class="col-md-2 control-label" for="cpf">CPF <h11>*</h11></label>  
+    <div class="col-md-2">
+      <input name="cpf" placeholder="Apenas números" class="form-control input-md" type="text" maxlength="11" pattern="[0-9]+$">
+    </div>
+    
+    <label class="col-md-1 control-label" for="rg">RG <h11>*</h11></label>  
+    <div class="col-md-2">
+      <input name="rg" placeholder="Apenas números" class="form-control input-md" type="text" maxlength="11">
+    </div>
+
+    <label class="col-md-1 control-label" for="dtnasc">Nascimento<h11>*</h11></label>  
+    <div class="col-md-2">
+      <input  name="dtnasc" placeholder="DD/MM/AAAA" class="form-control input-md" type="text" maxlength="10" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
+    </div>   
+   
+  </div>
+  
+  <div class="form-group">
+
+    <label class="col-md-2 control-label" for="pai">Pai<h11>*</h11></label>  
+    <div class="col-md-4">
+     <input name="pai" placeholder="Nome do Pai" class="form-control input-md" type="text">
+    </div>
+
+    <label class="col-md-2 control-label" for="mae">Mãe<h11>*</h11></label>  
+    <div class="col-md-4">
+      <input name="mae" placeholder="Nome da Mãe" class="form-control input-md" type="text">
+    </div>
+
+  </div>  
+
+  <div class="form-group">
+
+    <label class="col-md-2 control-label" for="tele">Telefone <h11>*</h11></label>
+    <div class="col-md-2">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+          <input name="tele" class="form-control" placeholder="XX XXXX-XXXX" type="text" maxlength="13" pattern="\[0-9]{2}\ [0-9]{4,6}-[0-9]{3,4}$"
+          OnKeyPress="formatar('## ####-####', this)">
+        </div>
+    </div>
+    <label class="col-md-2 control-label" for="telResp">Telefone Responsável <h11>*</h11></label>
+    <div class="col-md-2">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+          <input name="telResp" class="form-control" placeholder="XX XXXXX-XXXX" type="text" maxlength="13" pattern="\[0-9]{2}\ [0-9]{4,6}-[0-9]{3,4}$"
+          OnKeyPress="formatar('## #####-####', this)">
+        </div>
+    </div>
+
+    <label class="col-md-1 control-label" for="familia">Familiares<h11>*</h11></label>
+    <div class="col-md-3">
+      <div class="input-group">       
+        <input name="familia" class="form-control" type="text" placeholder="Quantos?" >        
+      </div>      
+    </div>
+    
+  </div>
+
+  <div class="form-group">    
+    <label class="col-md-2 control-label" for="renda_fami">Renda Familiar <h11>*</h11></label>
+    <div class="col-md-3">
+      <select name="renda_fami" class="form-control">
+          <option value=""></option>
+        <option value="ATE 1 SALARIO MÍNIMO">ATE 1 SALARIO MÍNIMO</option>
+        <option value="DE 1 A 2 SALARIOAS MÍNIMOS">DE 1 A 2 SALARIOAS MÍNIMOS</option>
+        <option value="DE 2 A 4 SALARIOAS MÍNIMOS">DE 2 A 4 SALARIOAS MÍNIMOS</option>
+        <option value="ACIMA DE 5 SLARIOS MÍNIMOS">ACIMA DE 5 SLARIOS MÍNIMOS</option>          
+      </select>
+    </div>
+  </div>
+  
+  <div class="form-group">    
+    <label class="col-md-2 control-label" for="email">Email <h11>*</h11></label>
+    <div class="col-md-5">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+        <input name="email" class="form-control" placeholder="email@email.com" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
+      </div>
+    </div>
+  </div>
+  
+<!-- Text input endereço-->
+  <hr><div id="newpost">
+    <div class="form-group">
+     <div class="col-md-2 control-label">
+         <h3>Endereço</h3>
+     </div>
+     </div>
+  <!-- Search input-->
+  <div class="form-group">
+    <label class="col-md-2 control-label" for="CEP">CEP <h11>*</h11></label>
+    <div class="col-md-2">
+      <input name="cep" placeholder="Apenas números" class="form-control input-md" value="" type="search" maxlength="8" pattern="[0-9]+$">
+    </div>
+    <div class="col-md-2">
+        <button type="button" class="btn btn-primary" onclick="pesquisacep(cep.value)">Pesquisar</button>
+      </div>
+  </div>
+  
+  <!-- Prepended text-->
+  <div class="form-group">
+    <label class="col-md-2 control-label" for="prependedtext">Endereço</label>
+    <div class="col-md-4">
+      <div class="input-group">
+        <span class="input-group-addon">Rua</span>
+        <input id="rua" name="endereco" class="form-control" placeholder="" readonly="readonly" type="text">
+      </div>
+      
+    </div>
+      <div class="col-md-2">
+      <div class="input-group">
+        <span class="input-group-addon">Nº <h11>*</h11></span>
+        <input name="numero" class="form-control" placeholder="" type="text">
+      </div>
+      
+    </div>
+    
+    <div class="col-md-3">
+      <div class="input-group">
+        <span class="input-group-addon">Bairro</span>
+        <input id="bairro" name="bairro" class="form-control" placeholder="" readonly="readonly" type="text">
+      </div>
+      
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label class="col-md-2 control-label" for="prependedtext"></label>
+    <div class="col-md-4">
+      <div class="input-group">
+        <span class="input-group-addon">Cidade</span>
+        <input id="cidade" name="cidade" class="form-control" placeholder="" readonly="readonly" type="text">
+      </div>
+      
+    </div>
+    
+     <div class="col-md-2">
+      <div class="input-group">
+        <span class="input-group-addon">Estado</span>
+        <input id="estado" name="estado" class="form-control" placeholder="" readonly="readonly" type="text">
+      </div>
+      
+    </div>
+  </div>
+  
+  <hr><div id="newpost">
+    <div class="form-group">
+     <div class="col-md-4 control-label">
+         <h3>Dados Complementares</h3>
+     </div>
+     </div>
+  <!-- Select Basic -->
+  <div class="form-group">
+    <label class="col-md-2 control-label" for="tipoSangue">Tipo Sangue <h11>*</h11></label>
+    <div class="col-md-3">
+      <select Sangue" name="tipoSangue" class="form-control">
+          <option value=""></option>
+        <option value="TIPO DE SANGUE">A+</option>
+        <option value="TIPO DE SANGUE">A-</option>
+        <option value="TIPO DE SANGUE">B+</option>
+        <option value="TIPO DE SANGUE">B-</option>
+        <option value="TIPO DE SANGUE">AB+</option>
+        <option value="TIPO DE SANGUE">AB-</option>
+        <option value="TIPO DE SANGUE">O+</option>
+        <option value="TIPO DE SANGUE">O-</option>
+        <option value="TIPO DE SANGUE">FATOR Rh+</option>
+        <option value="TIPO DE SANGUE">FATOR Rh-</option>
+      </select>
+    </div>
+
+    <label class="col-md-2 control-label" for="sus">Cartão SUS <h11>*</h11></label>  
+    <div class="col-md-3">
+     <input name="sus" type="text" placeholder="Cartão SUS" class="form-control input-md">
+    </div>
+
+  </div>    
+ 
+  <div class="form-group">
+      
+    <label class="col-md-2 control-label" for="escolaridade">Escolaridade <h11>*</h11></label>
+    
+    <div class="col-md-3">
+      <select name="escolaridade" class="form-control">
+      <option value=""></option>        
+        <option value="Fundamental Incompleto">Fundamental Incompleto</option>
+        <option value="Fundamental Completo">Fundamental Completo</option>
+        <option value="Médio Incompleto">Médio Incompleto</option>
+        <option value="Médio Completo">Médio Completo</option>
+        <option value="Superior Incompleto">Superior Incompleto</option>
+        <option value="Superior Completo">Superior Completo</option>
+      </select>
+    </div>      
+  
+    <label class="col-md-2 control-label" for="serie">Série<h11>*</h11></label>  
+    <div class="col-md-3">
+      <input name="serie" placeholder="Apenas números" class="form-control input-md"type="text" maxlength="1">
+    </div>   
+
+  </div>  
+  
+  <div class="form-group">
+
+    <label class="col-md-2 control-label" for="escola">Nome da Escola <h11>*</h11></label>  
+    <div class="col-md-8">
+     <input  name="escola" placeholder="Digite o nome da Escola" class="form-control input-md" type="text">
+    </div>
+
+  </div>
+  
+  <div class="form-group">
+
+    <label class="col-md-2 control-label" for="treinar">Cede de Treinamento <h11>*</h11></label>
+    <div class="col-md-3">
+      <select name="treinar" class="form-control">
+          <option value=""></option>
+        <option value="Ulisses Guimarães">Ulisses Guimarães</option>
+        <option value="Ayrton Senna">Ayrton Senna</option>
+        <option value="Floresta">Floresta</option>          
+      </select>
+    </div>
+
+    <label class="col-md-2 control-label" for="faixas">Graduação<h11>*</h11></label>
+    <div class="col-md-3">
+      <select name="faixas" class="form-control">
+      <option value=""></option>            
+        <option value="FAIXA PRETA">FAIXA PRETA</option>
+        <option value="FAIXA ROXA">FAIXA ROXA</option>
+        <option value="FAIXA AZUL">FAIXA AZUL</option>
+        <option value="FAIXA MARROM">FAIXA MARROM</option>
+        <option value="FAIXA VERDE">FAIXA VERDE</option>
+        <option value="FAIXA LARANJA"> FAIXA LARANJA</option>
+        <option value="FAIXA AMARELA">FAIXA AMARELA</option>
+        <option value="FAIXA BRANCA">FAIXA BRANCA</option>
+      </select>
+    </div> 
+
+  </div>   
+
+  <div class="form-group">
+
+    <label class="col-md-2 control-label" for="peso">Peso Atual<h11>*</h11></label>  
+    <div class="col-md-3">
+      <input name="peso" placeholder="Ex: 80.00" class="form-control input-md" type="text" maxlength="6">
+    </div>  
+
+    <label class="col-md-2 control-label" for="diretor">Diretores<h11>*</h11></label>
+    <div class="col-md-3">
+      <select name="diretor" class="form-control">
+      <option value=""></option>        
+        <option value="FINANCEIRO">FINANCEIRO</option>
+        <option value="SECRETARIA">SECRETARIA</option>
+        <option value="DERETOR GERAL">DIRETOR GERAL</option>
+       
+      </select>
+    </div> 
+    
+  </div> 
+
+  <div class="form-group">    
+
+    <label class="col-md-2 control-label" for="active">Statu :<h11>*</h11></label>
+    <div class="col-md-3">
+      <select name="active" class="form-control">
+      <option value=""></option>        
+        <option value="True">True</option>
+        <option value="False">False</option>    
+       
+      </select>
+    </div> 
+    
+  </div>     
+
+  <div class="form-group">
+    
+    <label class="col-md-2 control-label" for="Nome">Descrição<h11>*</h11></label>  
+    <div class="col-md-8">
+      <textarea name="descricao" placeholder="Descreva um resulmo do atleta" class="form-control input-md" cols="97" rows="5"></textarea>
+    
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label class="col-md-2 control-label" for="file">Imagem<h11>*</h11></label>  
+    <div class="col-md-8">     
+    <input name="file" placeholder="" class="form-control input-md" type="file">
+    </div>
+  </div>
+   
+  <!-- Button (Double) -->
+  <div class="form-group">
+    <label class="col-md-2 control-label" for="Cadastrar"></label>
+    <div class="col-md-8">
+      <button title="Cadastrar" class="btn btn-success" type="Submit">Cadastrar</button>
+      <button title="Cancelar" class="btn btn-danger" type="Reset">Cancelar</button>
+      
+    </div>
+  </div>
+  
+  
+  </fieldset>
+  </form>
+  <a href="#topo" class="btn" title="Voltar ao início da página">
+    <i class="material-icons right">arrow_upward</i>
+  </a> 
+<!------------------Fim Formulario---------------------------->      
+
+ 
+
+
+{% endblock %}
+{% block java %}{% include 'base/javaScriptsCadastro.html' %}{% endblock %}

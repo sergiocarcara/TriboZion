@@ -1,0 +1,92 @@
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}:...Projeto-Tribo Zion - Eventos...:{% endblock %}
+
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'include/nave_evento.html' %}
+
+{% endblock %}
+
+
+<!-- Titulo do conteudo-->
+
+{% block titulo_page %}
+
+<div class="section no-pad-bot" id="topo">
+  <div class="container">       
+    <h3 class="header orange-text">EVENTOS</h3>              
+    <hr style="border-color:hotpink ; border-width: 1,5px; ">    
+  </div>
+</div>
+
+{% endblock %}
+
+<!-- Fim Titulo page-->
+
+
+<!--Conteudo da Pagina-->
+{% block conteudo %}    
+    
+    <div class="row col s12">
+        <a href="/eventos/" class="btn blue"><i class="material-icons left ">keyboard_arrow_left</i>Voltar</a>
+        <a href="http://www.fjjro.com.br/" class="btn orange" target="_blanck" >
+            <h7 style="color:black;"><b>Fonte: </b> </h7><h7 style="color:crimson;">http://www.fjjro.com.br/</</h7>
+          </a>    
+        <a class="btn disabled" >
+          <h7 style="color:black;"><b>Criado em: </b> </h7><h7 style="color:crimson;">{{eventos_detalhes.data_criacao}}</</h7>
+        </a>      
+
+        <div class="row">
+          <div class="col s12 m12">
+            <div class="card-panel " id="print">
+              <span class="black-text">
+                <p><h4>{{eventos_detalhes.titulo}}</h4></p>
+                {{eventos_detalhes.texto | safe }}
+              </span>
+              {% if eventos_detalhes.active == True %}
+              <a href="{{eventos_detalhes.link}}" class="btn-small blue darken-1" target="-blanck">
+                <h7 style="color:black;"><b>ESCREVA-SE AQUI:</b> </h7><h7 style="color:cornsilk;">{{eventos_detalhes.link}}</</h7>
+              </a>
+              {% else %}
+              <a href="{{eventos_detalhes.link}}" class="btn-small blue darken-1 disabled" target="-blanck">
+                <h7 style="color:black;"><b>ISCRIÇÕES ENCERRADA:</b> </h7><h7 style="color:cornsilk;">{{eventos_detalhes.link}}</</h7>
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div><br>        
+        <a href="#topo" class="btnedit btn-small deep-purple darken-1 " title="Voltar ao início da página">
+          Topo<i class="material-icons right">arrow_upward</i>
+        </a>     
+    
+    </div>
+    
+<!-- Modal Structure -->
+<div id="modal_confirma" class="modal">
+  <div class="modal-content">
+    <b><h4 style="color: crimson;">Deseja realmente excluir!</h4></b>
+    <p>Esse registro será excluido e não poderar se recuperado...</p>
+  </div>
+  <div class="modal-footer">
+    <a href="/ata/delete/{{atas.id}}/">
+      <button class="btnDelet red darken-1 btn-small " title="DELATAR" type="button">
+        Deletar<i class="material-icons right">delete_forever</i>
+      </button>
+    </a>    
+    <a href="/ata/detalhes/{{atas.id}}" class="modal-close green darken-1  btn">Cancelar<i class="material-icons right">close</i></a>
+  </div>
+</div>
+
+    
+
+{% endblock %}
+<!--Fim do Conteudo da Pagina-->

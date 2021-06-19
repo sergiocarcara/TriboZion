@@ -1,0 +1,89 @@
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}404 Página nao encontardo!{% endblock %}
+
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'include/nave_erro.html' %}
+
+{% endblock %}
+
+
+<!-- Titulo do conteudo-->
+
+{% block titulo_page %}
+
+
+{% endblock %}
+
+<!-- Fim Titulo page-->
+
+
+<!--Conteudo da Pagina-->
+
+{% block conteudo %}
+<div class="section no-pad-bot" id="index-banner">
+
+    <div class="container">    
+      <Center>
+      <h1 class="header orange-text" style="font-size:200px;" >404
+      <a href="/"><img src="{% static 'img/logo1.png' %}" width="180" height="180" title="Tribo Zion"></a>
+    </h1>
+    </Center>
+  
+    <div class="row right">
+
+        <h4 class="header col s12 light" style="color: blue;">
+        <b>Desculpe, essa página não existe</b>           
+        </h4>
+
+        <span style=" right: auto;" >  
+        <h5 class="header col s16 light">        
+        o link que você clicou pode estar<br>
+        comrrompido ou a página pode ter sido<br>
+        removida
+        </h5>
+        </span>
+
+    </div>
+
+      <div class="row">
+        <a href="/" id="download-button" class="btn-small waves-effect waves-light blue">
+           RETORNA A PÁGINA INICIAL</a>
+      </div>
+     
+      <br><br>
+    </div>
+  </div>
+  
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

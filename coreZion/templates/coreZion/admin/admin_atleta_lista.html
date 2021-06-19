@@ -1,0 +1,149 @@
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base_admin.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}Lista de Atletas{% endblock %}
+{% block head %}{% include 'base/head_admin.html' %}{% endblock %}
+
+
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'include/nave_admin.html' %}
+
+{% endblock %}
+
+
+<!-- Titulo do conteudo-->
+
+{% block titulo_page %}
+
+<br><br>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">  
+
+      <a href="/logout/" class="waves-effect red waves-light btn-large">
+        <i class="material-icons left">highlight_off</i> Sair
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left">account_circle
+        </i> {{ user }}
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left"> person_outline
+        </i>
+       {{ user.first_name }}
+      </a>    
+      <h5 class="right-align blue-text">
+        <b>{% include 'include/data_hora.html' %}</b>
+      </h5>   
+      <div class="divider"></div>
+  </div>    
+</div>
+
+{% endblock %}
+
+<!-- Fim Titulo page-->
+
+<!--Titulo do contene-->
+
+{% block title_contine %}
+
+<a class="btn-large disabled">
+  <i class="material-icons left">format_list_bulleted</i>
+  LISTA - ATLETAS 
+</a>
+<a class="indigo waves-effect waves-light btn-large" href="/administrativo/" title="Painel Administrativo">
+  <i class="material-icons left">apps</i>Painel Adminstrativo
+</a>
+<a href="/atleta/cadastro/" data-target="modal" id="new" class="blue waves-effect waves-light btn-large  modal-trigger"  title="Adicionado um novo ATLETA">
+  <i class="material-icons left">library_add</i>Cadastro de Atletas
+</a>    
+<span class="new badge" data-badge-caption="Registro">{{atleta_cont}}</span>
+
+{% endblock %}
+
+<!--fim-->
+
+<!--Conteudo da Pagina-->
+
+{% block conteudo %}       
+ <br>   
+
+   
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">search</i>
+        <input type="text" id="autocomplete-input" class="autocomplete">
+        <label for="autocomplete-input">Localizar</label>
+      </div>
+    </div>
+
+
+    <table id="tableNotes" class="responsive-table bordered centered striped">
+     
+      <b><thead>
+        <tr>
+          <th>NOME</th>
+          <th>CPF</th> 
+          <th>DATA DA CRIAÇÃO</th>
+          <th>CADASTRO</th>
+          <th>STATUS</th> 
+          <th>Ação</th>
+                  
+        </tr>
+      </thead></b>
+      
+      <tbody>
+       {% for alunos in atletas %}
+        <tr>
+          <td>{{ alunos.nome }}</td>
+          <td>{{ alunos.cpf }}</td> 
+          <td>{{ alunos.data_criacao }}</td>
+          <td>{{ alunos.diretores}}</td>
+          {% if alunos.active == True %}
+          <td>
+            <a class="btn-small teal accent-3" >
+              ATIVO
+            </a>
+          </td>
+          {% else %}           
+          <td>
+            <a class="btn-flat disabled">
+             INATIVO
+            </a>
+          </td>
+            
+          {% endif %}
+          <td>
+            {% if alunos.active == True %}
+            <a href="/atleta/detalhes/{{alunos.id}}/" data-target="modal1" class="green modal-trigger btn-small deep-purple darken-1 waves-effect waves-teal" title="DETALHES">
+              Detalhes<i class="material-icons right">event_note</i>
+            </a> 
+            
+            <a href="!#" data-target="modal1" class="btnedit modal-trigger btn-small deep-purple darken-1 waves-effect waves-light" title="Editar uma ata">
+              Edit<i class="material-icons right">update</i>
+            </a>      
+            {% else %} 
+            <a href="/atleta/detalhes/{{alunos.id}}/" data-target="modal1" class="green modal-trigger btn-small deep-purple darken-1 waves-effect waves-teal" title="DETALHES">
+              Detalhes<i class="material-icons right">event_note</i>
+            </a> 
+            
+            <a href="!#" data-target="modal1" class="btnedit modal-trigger btn-small deep-purple darken-1 waves-effect waves-light" title="Editar uma ata">
+              Edit<i class="material-icons right">update</i>
+            </a>
+            {% endif %}
+          </td>
+        {% endfor %}  
+      </tbody>      
+      
+    </table>
+
+    
+
+{% endblock %}
+{% block java %}{% include 'base/javaScripts.html' %}{% endblock %}

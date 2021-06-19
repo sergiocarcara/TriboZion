@@ -1,0 +1,108 @@
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base_admin.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}lista de atas{% endblock %}
+{% block head %}{% include 'base/head_admin.html' %}{% endblock %}
+
+
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'include/nave_admin.html' %}
+
+{% endblock %}
+
+
+<!-- Titulo do conteudo-->
+
+{% block titulo_page %}
+
+<br><br>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">  
+
+      <a href="/logout/" class="waves-effect red waves-light btn-large">
+        <i class="material-icons left">highlight_off</i> Sair
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left">account_circle
+        </i> {{ user }}
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left"> person_outline
+        </i>
+       {{ user.first_name }}
+      </a>    
+      <h5 class="right-align blue-text">
+        <b>{% include 'include/data_hora.html' %}</b>
+      </h5>   
+      <div class="divider"></div>
+  </div>    
+</div>
+
+{% endblock %}
+
+<!-- Fim Titulo page-->
+
+<!--Titulo do contene-->
+
+{% block title_contine %}
+<a class="btn-large disabled">
+  <i class="material-icons left">format_list_bulleted</i> 
+  LISTA - USUARIOS
+</a>
+
+<a class="indigo waves-effect waves-light btn-large" href="/administrativo/" title="Painel Administrativo">
+  <i class="material-icons left">apps</i>Painel Adminstrativo
+</a>
+
+{% endblock %}
+
+<!--fim-->
+
+<!--Conteudo da Pagina-->
+
+{% block conteudo %}       
+ <br><br>  
+
+    <table id="tableNotes" class="responsive-table bordered centered striped">
+     
+      <b><thead>
+        <tr>
+          <th>USUARIOS</th>
+          <th>E-MAIL</th>
+          <th>NOME</th>          
+          <th>DATA DO ULTIMO LOGIN</th>          
+          <th>TIPO</th>        
+        </tr>
+      </thead></b>
+      
+      <tbody>
+        {% for usuarios in myUser %}
+        <tr>
+          <td><a href="/admin/usuarios/detalhes/{{usuarios.id}}/">{{ usuarios.username }}</a></td>
+          <td>{{ usuarios.email }}</td>          
+          <td>{{ usuarios.first_name}}</td>
+          <td>{{ usuarios.last_login }}</td>          
+          <td>{% if usuarios.is_superuser %}
+            ADMINISTRADOR
+            {% else %}
+            USUÁRIO
+            {% endif %}
+          </td>
+
+        </tr>
+          {% endfor %}
+      </tbody>
+      
+      
+    </table>
+
+
+{% endblock %}
+{% block java %}{% include 'base/javaScripts.html' %}{% endblock %}

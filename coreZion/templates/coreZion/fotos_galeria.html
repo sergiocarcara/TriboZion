@@ -1,0 +1,110 @@
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}:...Galeria de Fotos...:{% endblock %}
+
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'include/nave_galeria_fotos.html' %}
+
+{% endblock %}
+
+
+<!-- Titulo do conteudo-->
+
+{% block titulo_page %}
+
+<div class="section no-pad-bot" id="index-banner">  
+  <div class="container center">
+    
+    <h3 class="header blue-text"><i class="large material-icons" title="GALERIA DE FOTOS">camera_alt</i></h3>   
+    <hr style="border-color:hotpink ; border-width: 1,5px; ">   
+  </div>
+</div>
+
+{% endblock %}
+
+<!-- Fim Titulo page-->
+
+
+<!--Conteudo da Pagina-->
+
+{% block conteudo %}
+
+<script>
+  $(document).ready(function(){
+    $('.materialbox').materialbox();
+    
+  });
+   </script>
+    <!--   Icon Section   -->
+
+    <div class="section no-pad-bot" id="index-banner">
+         
+        <h4 class="header orange-text center">{{ pageGaleria.titulo}}</h4>
+        <a href="/fotos/" class="waves-effect waves-light btn blue"><i class="material-icons left">chevron_left</i>Voltar</a>
+        <hr style="border-color:hotpink ; border-width: 1,5px; ">
+        <br><br>    
+    </div>  
+
+
+     
+    
+    <div class="row card">  
+      
+      <div class="col s12 m4 14">
+        <img src="{{ pageGaleria.imagen1.url }}" class="materialbox responsive-img card">
+      </div>
+      <div class="col s12 m4 14">
+        <img src="{{  pageGaleria.imagen2.url }}" class="materialbox responsive-img card">
+      </div>
+      <div class="col s12 m4 14">
+        <img src="{{  pageGaleria.imagen3.url }}" class="materialbox responsive-img card">
+      </div>
+      <div class="col s12 m4 14">
+        <img src="{{  pageGaleria.imagen4.url }}" class="materialbox responsive-img card">
+      </div>  
+      <div class="col s12 m4 14">
+        <img src="{{  pageGaleria.imagen5.url }}" class="materialbox responsive-img card">
+      </div>  
+      <div class="col s12 m4 14">
+        <img src="{{  pageGaleria.imagen6.url }}" class="materialbox responsive-img card">
+      </div>  
+      <div class="col s12 m4 14">
+        <img src="{{  pageGaleria.imagen7.url }}" class="materialbox responsive-img card">
+      </div>  
+      <div class="col s12 m4 14">
+        <img src="{{  pageGaleria.imagen8.url }}" class="materialbox responsive-img card">
+      </div>  
+      <div class="col s12 m4 14">
+        <img src="{{  pageGaleria.imagen9.url }}" class="materialbox responsive-img card">
+      </div>  
+      <div class="col s12 m4 14">
+        <img src="{{  pageGaleria.imagen10.url }}" class="materialbox responsive-img card">
+      </div>        
+    
+    </div>   
+
+    <style>
+      body{
+        background: #dddd;
+      }
+      .materialbox{
+        cursor: pointer;
+        transition: .5s;
+        background:  #eee;
+      }
+      .materialbox:hover{
+        transform: scale(1.03);
+        background: #fff;       
+      }
+    </style>
+  
+
+{% endblock %}

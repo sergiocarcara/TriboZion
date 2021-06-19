@@ -1,0 +1,125 @@
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base_admin.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}lista de Diretores{% endblock %}
+{% block head %}{% include 'base/head_admin.html' %}{% endblock %}
+
+
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'include/nave_admin.html' %}
+
+{% endblock %}
+
+
+<!-- Titulo do conteudo-->
+
+{% block titulo_page %}
+
+<br><br>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">  
+
+      <a href="/logout/" class="waves-effect red waves-light btn-large">
+        <i class="material-icons left">highlight_off</i> Sair
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left">account_circle
+        </i> {{ user }}
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left"> person_outline
+        </i>
+       {{ user.first_name }}
+      </a>    
+      <h5 class="right-align blue-text">
+        <b>{% include 'include/data_hora.html' %}</b>
+      </h5>   
+      <div class="divider"></div>
+  </div>    
+</div>
+
+{% endblock %}
+
+<!-- Fim Titulo page-->
+
+<!--Titulo do contene-->
+
+{% block title_contine %}
+
+<a class="btn-large disabled">
+  <i class="material-icons left">format_list_bulleted</i>
+  LISTA - DIRETORIA 
+</a>
+<a class="indigo waves-effect waves-light btn-large" href="/administrativo/" title="Painel Administrativo">
+  <i class="material-icons left">apps</i>Painel Adminstrativo
+</a>
+<a href="/diretoria/cadastro/" data-target="modal" id="new" class="blue waves-effect waves-light btn-large  modal-trigger"  title="Adicionado um DIRETOR">
+  <i class="material-icons left">library_add</i>Cadastro de Diretores
+</a>   
+
+{% endblock %}
+
+<!--fim-->
+
+<!--Conteudo da Pagina-->
+
+{% block conteudo %}       
+ <br>     
+
+    <table id="tableNotes" class="responsive-table bordered centered striped">
+     
+      <b><thead>
+        <tr>
+          <th>NOME</th>
+          <th>FUNÇÃO</th> 
+          <th>DATA DA CRIAÇÃO</th>
+          <th>OPERAÇÃO</th>
+                  
+        </tr>
+      </thead></b>
+      
+      <tbody>
+       {% for diretores in diretor %}
+        <tr>
+          <td>{{ diretores.nome }}</td>
+          <td>{{ diretores.funcao }}</td> 
+          <td>{{ diretores.data_criacao }}</td>          
+          <td>      
+            <a href="/diretoria/detalhes/{{diretores.id}}/" data-target="modal1" class="green modal-trigger btn-small deep-purple darken-1 waves-effect waves-teal" title="DETALHES">
+              Detalhes<i class="material-icons right">event_note</i>
+            </a> 
+            
+            <a href="!#" data-target="modal1" class="btnedit modal-trigger btn-small deep-purple darken-1 waves-effect waves-light" title="Editar uma ata">
+              Edit<i class="material-icons right">update</i>
+            </a>
+
+            <a href="/diretoria/delete/{{diretores.id}}/" class="btnedit modal-trigger btn-small red darken-1 waves-effect waves-light" title="APAGAR">
+              Deletar<i class="material-icons right">delete</i>
+            </a>
+       
+          </td>
+        {% endfor %}  
+      </tbody>      
+    </table>
+    {% for message in messages %}            
+    <div class="card-alert card red lighten-5">
+      <div class="card-content pink-text darken-1">
+        <span class="card-title pink-text darken-1">EXCLUIDO!</span>
+        <p>{{message}}
+       <a href="/diretoria/lista/" class="pink-text">Ok</a>
+      </p>
+      </div>             
+    </div>           
+    {% endfor %}
+   
+    
+
+{% endblock %}
+{% block java %}{% include 'base/javaScripts.html' %}{% endblock %}

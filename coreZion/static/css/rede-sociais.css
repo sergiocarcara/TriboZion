@@ -1,0 +1,17 @@
+/*-----Icone-------*/
+
+.sb-icone{
+    text-decoration: none;
+    border: none;
+}
+.sb-icone img{
+    opacity:.50;
+
+
+}
+
+.sb-icone img:hover{
+    opacity:.99;
+}
+
+/*--------Fim-----------*/

@@ -1,0 +1,106 @@
+<!-- Exteção do arquivo de base html-->
+{% extends 'base/base_admin.html' %}
+
+<!--Chamando arquivos static-->
+{% load static %}
+
+
+<!-- Titulo da Pagina-->
+{% block title %}lista dos Eventos{% endblock %}
+{% block head %}{% include 'base/head_admin.html' %}{% endblock %}
+
+
+<!-- Menu da Pagina-->
+{% block navebar %}
+
+  {% include 'include/nave_admin.html' %}
+
+{% endblock %}
+
+
+<!-- Titulo do conteudo-->
+
+{% block titulo_page %}
+
+<br><br>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">  
+
+      <a href="/logout/" class="waves-effect red waves-light btn-large">
+        <i class="material-icons left">highlight_off</i> Sair
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left">account_circle
+        </i> {{ user }}
+      </a>
+      <a class="btn-large disabled">
+        <i class="material-icons left"> person_outline
+        </i>
+       {{ user.first_name }}
+      </a>    
+      <h5 class="right-align blue-text">
+        <b>{% include 'include/data_hora.html' %}</b>
+      </h5>   
+      <div class="divider"></div>
+  </div>    
+</div>
+
+{% endblock %}
+
+<!-- Fim Titulo page-->
+
+<!--Titulo do contene-->
+
+{% block title_contine %}
+
+<a class="btn-large disabled">
+  <i class="material-icons left">format_list_bulleted</i>
+  LISTA - EVENTOS 
+</a>
+<a class="indigo waves-effect waves-light btn-large" href="/administrativo/" title="Painel Administrativo">
+  <i class="material-icons left">apps</i>Painel Adminstrativo
+</a>
+<a href="/eventos/cadastro/" data-target="modal" id="new" class="blue waves-effect waves-light btn-large  modal-trigger"  title="Adicionado um novo EVENTO">
+  <i class="material-icons left">library_add</i>Cadastro de Eventos
+</a>    
+<span class="new badge" data-badge-caption="Registro">{{evento_cont}}</span>
+
+{% endblock %}
+
+<!--fim-->
+
+<!--Conteudo da Pagina-->
+
+{% block conteudo %}       
+    
+   
+    <br><br><br>     
+    <table id="tableNotes" class="responsive-table bordered centered striped">
+     
+      <b><thead>
+        <tr>
+          <th>TITULO</th>         
+          <th>DATA DA CRIAÇÃO</th>          
+          <th>AÇAO</th>
+                  
+        </tr>
+      </thead></b>
+      
+      <tbody>
+       {% for eventos in evento %}
+        <tr>
+          <td>{{ eventos.titulo }}</td>         
+          <td>{{ eventos.data_criacao }}</td>
+          <td>  
+
+            <a href="/eventos/detalhes/{{eventos.id}}" data-target="modal1" class="green modal-trigger btn-small deep-purple darken-1 waves-effect waves-teal" title="DETALHES">
+                Detalhes<i class="material-icons right">event_note</i>
+            </a>          
+          </td>
+        {% endfor %}  
+      </tbody>      
+      
+    </table>     
+
+{% endblock %}
+{% block java %}{% include 'base/javaScripts.html' %}{% endblock %}
