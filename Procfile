@@ -1,2 +1,1 @@
-
-web: gunicorn triboZion.wsgi 
+web: gunicorn triboZion.wsgi --preload --log-file-
